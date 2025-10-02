@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 #include "raylib.h"
+#include "components/component.h"
 
 namespace mefiddzy{
     class Object {
@@ -24,7 +26,9 @@ namespace mefiddzy{
 
         void setScale(float mScale);
 
-        void setColor(const Color &mColor);
+        void setTint(const Color &mColor);
+
+        void addComponent(std::unique_ptr<IObjectComponent> component);
 
         Object(const Vector2 &mCoords, const Texture2D &mTexture,
                float mRotation = 0.0f, float mScale = 1.0f, const Color &mColor = WHITE);
@@ -37,12 +41,18 @@ namespace mefiddzy{
 
         static void update();
 
+        __forceinline static const auto getAllObjects() {
+            return s_objects;
+        }
+
     private:
         Vector2 m_pos{};
         Texture2D m_texture{};
         float m_rotation;
         float m_scale;
         Color m_color{};
+
+        std::vector<std::unique_ptr<IObjectComponent>> m_components;
 
         static std::vector<Object*> s_objects;
     };

@@ -1,7 +1,8 @@
 #include "object.h"
+#include <memory>
 #include "raylib.h"
 
-using namespace mefiddzy;
+using mefiddzy::Object;
 
 std::vector<mefiddzy::Object*> mefiddzy::Object::s_objects{};
 
@@ -41,7 +42,7 @@ void Object::setScale(float mScale) {
     m_scale = mScale;
 }
 
-void Object::setColor(const Color &mColor) {
+void Object::setTint(const Color &mColor) {
     m_color = mColor;
 }
 
@@ -71,8 +72,6 @@ Object &Object::operator=(const Object &obj) {
     m_texture = obj.m_texture;
     m_pos = obj.m_pos;
 
-    s_objects.emplace_back(this);
-
     return *this;
 }
 
@@ -85,6 +84,14 @@ void Object::update() {
                 cur->m_scale,
                 cur->m_color
         );
+
+        for (const auto& curComp : cur->m_components) {
+            curComp->onTick(*cur);
+        }
     }
+}
+
+void mefiddzy::Object::addComponent(std::unique_ptr<IObjectComponent> component) {
+    m_components.emplace_back(std::move(component));
 }
 

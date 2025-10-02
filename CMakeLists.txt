@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(raylib_undertale_engine LANGUAGES C CXX)
+project(raylib_object_engine LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 99)
@@ -16,16 +16,21 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(raylib)
 
-add_executable(raylib_undertale_engine
+add_executable(raylib_object_engine
         main.cpp
         object.cpp
         object.h
+        components/component.h
+        components/hitbox_component.cpp
+        components/hitbox_component.h
 )
 
-target_link_libraries(raylib_undertale_engine PRIVATE raylib)
+target_link_libraries(raylib_object_engine PRIVATE raylib)
+
+target_include_directories(raylib_object_engine PRIVATE components)
 
 if (DEBUG)
-    set_target_properties(raylib_undertale_engine PROPERTIES WIN32_EXECUTABLE FALSE)
+    set_target_properties(raylib_object_engine PROPERTIES WIN32_EXECUTABLE FALSE)
 else()
-    set_target_properties(raylib_undertale_engine PROPERTIES WIN32_EXECUTABLE TRUE)
+    set_target_properties(raylib_object_engine PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
