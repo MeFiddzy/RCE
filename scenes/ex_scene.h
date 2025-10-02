@@ -7,6 +7,6 @@ namespace mefiddzy::scenes {
     public:
         void gameLoop() override;
 
-        std::vector<std::unique_ptr<Object>> getObjectsForLoad() override;
+        void loadScene() override;
     };
 }
