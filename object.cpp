@@ -95,3 +95,4 @@ void mefiddzy::Object::addComponent(std::unique_ptr<IObjectComponent> component)
     m_components.emplace_back(std::move(component));
 }
 
+

@@ -4,6 +4,8 @@
 #include <memory>
 #include "raylib.h"
 #include "components/component.h"
+#include <concepts>
+#include <exception>
 
 namespace mefiddzy{
     class Object {
@@ -43,6 +45,31 @@ namespace mefiddzy{
 
         __forceinline static const auto getAllObjects() {
             return s_objects;
+        }
+
+        template<typename Component>
+        bool hasComponent() {
+            static_assert(std::derived_from<Component, IObjectComponent>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
+
+            for (const auto &component : m_components) {
+                if (dynamic_cast<Component*>(component.get()) != nullptr) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        template<typename Component>
+        Component& getComponent() {
+            static_assert(std::derived_from<Component, IObjectComponent>, "Object::getComponent<Component> | Component doesn't derive from IObjectComponent.");
+
+            for (const auto &component : m_components) {
+                if (auto ptr = dynamic_cast<Component*>(component.get())) {
+                    return *ptr;
+                }
+            }
+
+            throw std::runtime_error("Object doesn't have component. Use hasComponent<>() to check!");
         }
 
     private:

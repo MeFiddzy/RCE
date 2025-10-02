@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 project(raylib_object_engine LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 20)
 
 option(DEBUG "Debug mode?" ON)
 
@@ -23,11 +22,13 @@ add_executable(raylib_object_engine
         components/component.h
         components/hitbox_component.cpp
         components/hitbox_component.h
+        components/all.h
+        scenes/scene.h
+        scenes/ex_scene.cpp
+        scenes/ex_scene.h
 )
 
 target_link_libraries(raylib_object_engine PRIVATE raylib)
-
-target_include_directories(raylib_object_engine PRIVATE components)
 
 if (DEBUG)
     set_target_properties(raylib_object_engine PROPERTIES WIN32_EXECUTABLE FALSE)

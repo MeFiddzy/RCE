@@ -3,6 +3,7 @@
 #include "component.h"
 #include "functional"
 #include "memory"
+#include "raylib.h"
 
 namespace mefiddzy {
     class Hitbox : public mefiddzy::IObjectComponent {
@@ -28,7 +29,10 @@ namespace mefiddzy {
         };
 
     public:
-        explicit Hitbox(Object &parent) : IObjectComponent(parent) {}
+        explicit Hitbox(const Vector2 &collisionBoxOffset, const Vector2 &collisionBoxSize);
+        explicit Hitbox(const Vector2 &collisionBoxOffset);
+        explicit Hitbox(Object &parent);
+        Hitbox() = default;
 
         void onTick(mefiddzy::Object &self) override;
 
@@ -36,7 +40,11 @@ namespace mefiddzy {
             return OnHitElem(m_onHit, *this);
         }
 
+        Vector2 getCollisionBoxSize() const ;
+
     private:
+        Vector2 m_collisionBoxSize;
+        Vector2 m_collisionBoxOffset;
         std::vector<std::function<void(const Object&)>> m_onHit;
     };
 }
