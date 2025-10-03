@@ -1,10 +1,9 @@
 #include "object.h"
 #include <memory>
 #include "raylib.h"
+#include "scenes/scene.h"
 
 using mefiddzy::Object;
-
-std::vector<mefiddzy::Object*> mefiddzy::Object::s_objects{};
 
 const Vector2& Object::getCoords() const {
     return m_pos;
@@ -50,7 +49,6 @@ Object::Object(const Vector2 &mCoords, const Texture2D &mTexture,
                float mRotation, float mScale, const Color &mColor)
         : m_pos(mCoords), m_texture(mTexture), m_rotation(mRotation),
           m_scale(mScale), m_color(mColor) {
-    s_objects.emplace_back(this);
 }
 
 Object::Object(const Object &obj) {
@@ -60,8 +58,6 @@ Object::Object(const Object &obj) {
     m_rotation = obj.m_rotation;
     m_texture = obj.m_texture;
     m_pos = obj.m_pos;
-
-    s_objects.emplace_back(this);
 }
 
 Object &Object::operator=(const Object &obj) {
@@ -76,7 +72,12 @@ Object &Object::operator=(const Object &obj) {
 }
 
 void Object::update() {
-    for (const auto& cur : s_objects) {
+    if (mefiddzy::scenes::IScene::getLoaded().expired())
+        return;
+
+    std::vector<Object*> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+
+    for (Object *cur : objectsInScene) {
         DrawTextureEx(
                 cur->m_texture,
                 cur->m_pos,
@@ -85,7 +86,7 @@ void Object::update() {
                 cur->m_color
         );
 
-        for (const auto& curComp : cur->m_components) {
+        for (std::unique_ptr<IObjectComponent> &curComp : cur->m_components) {
             curComp->onTick(*cur);
         }
     }

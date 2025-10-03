@@ -1,5 +1,6 @@
 #include "hitbox_component.h"
 #include "../object.h"
+#include "../scenes/scene.h"
 
 #define SHOW_HITBOXES true
 
@@ -19,8 +20,12 @@ void mefiddzy::Hitbox::onTick(mefiddzy::Object &parent) {
     DrawRectangleLines(hitbox.x, hitbox.y, hitbox.width, hitbox.height, RED);
 #endif
 
+    if (mefiddzy::scenes::IScene::getLoaded().expired())
+        return;
 
-    for (const auto loopObj : mefiddzy::Object::getAllObjects()) {
+    std::vector<Object*> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+
+    for (Object *loopObj : objectsInScene) {
         if (loopObj == &parent || !(loopObj->hasComponent<Hitbox>()))
             continue;
 

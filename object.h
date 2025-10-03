@@ -43,10 +43,6 @@ namespace mefiddzy{
 
         static void update();
 
-        __forceinline static const auto getAllObjects() {
-            return s_objects;
-        }
-
         template<typename Component>
         bool hasComponent() {
             static_assert(std::derived_from<Component, IObjectComponent>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
@@ -80,7 +76,5 @@ namespace mefiddzy{
         Color m_color{};
 
         std::vector<std::unique_ptr<IObjectComponent>> m_components;
-
-        static std::vector<Object*> s_objects;
     };
 }

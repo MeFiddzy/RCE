@@ -14,6 +14,8 @@ namespace mefiddzy {
 
             virtual void loadScene() {}
 
+            std::vector<Object*> getLoadedObjects();
+
             template<typename Scene>
             static void loadScene() {
                 static_assert(std::derived_from<Scene, IScene>, "Scene must derive from IScene interface!");
