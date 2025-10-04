@@ -7,7 +7,7 @@ namespace mefiddzy {
 
     class IObjectComponent {
     public:
-        virtual void onTick(mefiddzy::Object &self) {}
+        virtual void onTick(mefiddzy::Object &parent) {}
 
         IObjectComponent() = default;
         virtual ~IObjectComponent() = default;

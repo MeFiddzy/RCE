@@ -5,11 +5,11 @@
 namespace mefiddzy::scenes {
     std::shared_ptr<IScene> IScene::s_loadedScene = nullptr;
 
-    std::vector<Object*> IScene::getLoadedObjects() {
-        std::vector<Object*> objectsCopy;
+    std::vector<std::weak_ptr<Object>> IScene::getLoadedObjects() {
+        std::vector<std::weak_ptr<Object>> objectsCopy;
 
         for (const auto &object : m_objects) {
-            objectsCopy.emplace_back(object.get());
+            objectsCopy.emplace_back(object);
         }
 
         return std::move(objectsCopy);

@@ -25,8 +25,10 @@ add_executable(raylib_object_engine
         components/all.h
         scenes/scene.h
         scenes/ex_scene.cpp
-        scenes/ex_scene.h
+        scenes/example_scene
         scenes/scene.cpp
+        components/children_component.h
+        components/children_component.cpp
 )
 
 target_link_libraries(raylib_object_engine PRIVATE raylib)

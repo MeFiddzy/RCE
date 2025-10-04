@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include "raylib.h"
 
 namespace mefiddzy {
     class Object;
@@ -10,11 +11,15 @@ namespace mefiddzy {
         public:
             virtual ~IScene() = default;
 
+            IScene() {
+                m_backgroundColor = RAYWHITE;
+            }
+
             virtual void gameLoop() {}
 
             virtual void loadScene() {}
 
-            std::vector<Object*> getLoadedObjects();
+            std::vector<std::weak_ptr<Object>> getLoadedObjects();
 
             template<typename Scene>
             static void loadScene() {
@@ -28,10 +33,15 @@ namespace mefiddzy {
                 return s_loadedScene;
             }
 
+            Color getBackgroundColor() {
+                return m_backgroundColor;
+            }
+
         protected:
-            std::vector<std::unique_ptr<Object>> m_objects;
+            std::vector<std::shared_ptr<Object>> m_objects;
             static std::shared_ptr<IScene> s_loadedScene;
 
+            Color m_backgroundColor{};
         };
     }
 }

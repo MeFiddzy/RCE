@@ -8,5 +8,7 @@ namespace mefiddzy::scenes {
         void gameLoop() override;
 
         void loadScene() override;
+    private:
+
     };
 }

@@ -1,6 +1,6 @@
-#include "ex_scene.h"
+#include "example_scene"
 #include "../object.h"
-#include "../components/hitbox_component.h"
+#include "../components/all.h"
 #include <iostream>
 
 using namespace mefiddzy;
@@ -28,21 +28,27 @@ void ExampleScene::gameLoop() {
 
     Object *player = m_objects[0].get() ;
 
-   player->setCoords({
-        player->getCoords().x + addX,
-        player->getCoords().y + addY
-   });
+    player->setPosition({
+                                player->getPosition().x + addX,
+                                player->getPosition().y + addY
+                        });
 }
 
 void ExampleScene::loadScene() {
     m_objects.push_back(std::make_unique<Object>(Object{{0, 0},LoadTexture("../resources/player.png")}));
     m_objects.push_back(std::make_unique<Object>(Object{{36, 36},LoadTexture("../resources/player.png")}));
+    m_objects.push_back(std::make_unique<Object>(Object{{1000, 1000}}));
 
-    m_objects[0]->addComponent(std::make_unique<Hitbox>(
-            Hitbox({25, 28 }, {453, 445}).onHit().addListener([](const Object &parent){
-                std::cout << "collision\n";
+    m_objects[0]->addComponent(std::make_unique<HitboxComponent>(
+            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](const Object &parent){
+                //m_backgroundColor = RED;
+                std::cout << "collide\n";
             }).build()
     ));
 
-    m_objects[1]->addComponent(std::make_unique<Hitbox>(Hitbox({25, 28 }, {453, 445})));
+    m_objects[0]->addComponent(std::make_unique<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
+
+    m_objects[1]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
+
+    m_objects[2]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent{{0, 0}, {10, 10}}));
 }

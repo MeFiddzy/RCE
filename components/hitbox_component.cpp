@@ -4,15 +4,15 @@
 
 #define SHOW_HITBOXES true
 
-using mefiddzy::Hitbox;
+using mefiddzy::HitboxComponent;
 
-mefiddzy::Hitbox::OnHitElem::OnHitElem(std::vector<std::function<void(const Object &)>> &onHit,
-                                       Hitbox &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
+mefiddzy::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(const Object &)>> &onHit,
+                                                HitboxComponent &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
 
-void mefiddzy::Hitbox::onTick(mefiddzy::Object &parent) {
+void mefiddzy::HitboxComponent::onTick(mefiddzy::Object &parent) {
     Rectangle hitbox = {
-            parent.getCoords().x + m_collisionBoxOffset.x,
-            parent.getCoords().y + m_collisionBoxOffset.y,
+            parent.getPosition().x + m_collisionBoxOffset.x,
+            parent.getPosition().y + m_collisionBoxOffset.y,
             m_collisionBoxSize.x,
             m_collisionBoxSize.y
     };
@@ -23,19 +23,24 @@ void mefiddzy::Hitbox::onTick(mefiddzy::Object &parent) {
     if (mefiddzy::scenes::IScene::getLoaded().expired())
         return;
 
-    std::vector<Object*> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<Object>> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
 
-    for (Object *loopObj : objectsInScene) {
-        if (loopObj == &parent || !(loopObj->hasComponent<Hitbox>()))
+    for (std::weak_ptr<Object> objectWeak : objectsInScene) {
+        if (objectWeak.expired())
             continue;
 
-        const auto &hitboxObj = loopObj->getComponent<Hitbox>();
+        auto object = objectWeak.lock();
+
+        if (object.get() == &parent || !(object->hasComponent<HitboxComponent>()))
+            continue;
+
+        const auto &hitboxObj = object->getComponent<HitboxComponent>();
         const auto &hitboxBoxSize = hitboxObj.m_collisionBoxSize;
         const auto &hitboxBoxOffset = hitboxObj.m_collisionBoxOffset;
 
         Rectangle curRect = {
-                loopObj->getCoords().x + hitboxBoxOffset.x,
-                loopObj->getCoords().y + hitboxBoxOffset.y,
+                object->getPosition().x + hitboxBoxOffset.x,
+                object->getPosition().y + hitboxBoxOffset.y,
                 hitboxBoxSize.x,
                 hitboxBoxSize.y
         };
@@ -44,23 +49,23 @@ void mefiddzy::Hitbox::onTick(mefiddzy::Object &parent) {
 #endif
         if (CheckCollisionRecs(hitbox, curRect)) {
             for (const auto &listener : m_onHit) {
-                listener(*loopObj);
+                listener(*object);
             }
         }
     }
 }
 
-mefiddzy::Hitbox::Hitbox(const Vector2 &collisionBoxOffset) : m_collisionBoxOffset(collisionBoxOffset) {}
+mefiddzy::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset) : m_collisionBoxOffset(collisionBoxOffset) {}
 
-mefiddzy::Hitbox::Hitbox(mefiddzy::Object &parent) {
+mefiddzy::HitboxComponent::HitboxComponent(mefiddzy::Object &parent) {
     m_collisionBoxSize = {
             static_cast<float>(parent.getTexture().width),
             static_cast<float>(parent.getTexture().height)
     };
 }
 
-mefiddzy::Hitbox::Hitbox(const Vector2 &collisionBoxOffset,
-                         const Vector2 &collisionBoxSize) : m_collisionBoxSize(collisionBoxSize),
+mefiddzy::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset,
+                                           const Vector2 &collisionBoxSize) : m_collisionBoxSize(collisionBoxSize),
                          m_collisionBoxOffset(collisionBoxOffset) {}
 
 

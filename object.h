@@ -10,7 +10,7 @@
 namespace mefiddzy{
     class Object {
     public:
-        [[nodiscard]] const Vector2& getCoords() const;
+        [[nodiscard]] const Vector2& getPosition() const;
 
         [[nodiscard]] const Texture2D& getTexture() const;
 
@@ -20,7 +20,7 @@ namespace mefiddzy{
 
         [[nodiscard]] const Color& getColor() const;
 
-        void setCoords(const Vector2 &mCoords);
+        void setPosition(const Vector2 &mCoords);
 
         void setTexture(const Texture2D &mTexture);
 
@@ -32,10 +32,12 @@ namespace mefiddzy{
 
         void addComponent(std::unique_ptr<IObjectComponent> component);
 
-        Object(const Vector2 &mCoords, const Texture2D &mTexture,
+        explicit Object(const Vector2 &mCoords, const Texture2D &mTexture = Texture2D(),
                float mRotation = 0.0f, float mScale = 1.0f, const Color &mColor = WHITE);
 
         Object(const Object &obj);
+
+        Object() = default;
 
         ~Object() = default;
 
@@ -44,7 +46,7 @@ namespace mefiddzy{
         static void update();
 
         template<typename Component>
-        bool hasComponent() {
+        bool hasComponent() const {
             static_assert(std::derived_from<Component, IObjectComponent>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
 
             for (const auto &component : m_components) {
@@ -68,12 +70,22 @@ namespace mefiddzy{
             throw std::runtime_error("Object doesn't have component. Use hasComponent<>() to check!");
         }
 
+        float getDeltaScale() const;
+
+        float getDeltaRotation() const;
+
+        Vector2 getDeltaPosition() const;
+
     private:
-        Vector2 m_pos{};
+        Vector2 m_position{};
         Texture2D m_texture{};
         float m_rotation;
         float m_scale;
         Color m_color{};
+
+        Vector2 m_lastPosition{};
+        float m_lastRotation;
+        float m_lastScale;
 
         std::vector<std::unique_ptr<IObjectComponent>> m_components;
     };

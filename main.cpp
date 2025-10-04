@@ -3,7 +3,8 @@
 #include <memory>
 
 #include "scenes/scene.h"
-#include "scenes/ex_scene.h"
+#include "components/all.h"
+#include "scenes/example_scene"
 #include "object.h"
 
 int main() {
@@ -11,15 +12,20 @@ int main() {
     SetTargetFPS(60);
 
     using namespace mefiddzy;
+    using namespace mefiddzy::scenes;
 
-    scenes::IScene::loadScene<scenes::ExampleScene>();
+    IScene::loadScene<ExampleScene>();
 
     while (!WindowShouldClose()) {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
+        if (IScene::getLoaded().expired())
+            continue;
 
-        if (!(scenes::IScene::getLoaded().expired()))
-            scenes::IScene::getLoaded().lock()->gameLoop();
+        std::shared_ptr<IScene> scene = IScene::getLoaded().lock();\
+
+        BeginDrawing();
+        ClearBackground(scene->getBackgroundColor());
+
+        scene->gameLoop();
 
         Object::update();
         EndDrawing();

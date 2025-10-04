@@ -5,8 +5,8 @@
 
 using mefiddzy::Object;
 
-const Vector2& Object::getCoords() const {
-    return m_pos;
+const Vector2& Object::getPosition() const {
+    return m_position;
 }
 
 const Texture2D& Object::getTexture() const {
@@ -25,8 +25,8 @@ const Color& Object::getColor() const {
     return m_color;
 }
 
-void Object::setCoords(const Vector2 &mCoords) {
-    m_pos = mCoords;
+void Object::setPosition(const Vector2 &mCoords) {
+    m_position = mCoords;
 }
 
 void Object::setTexture(const Texture2D &mTexture) {
@@ -47,7 +47,7 @@ void Object::setTint(const Color &mColor) {
 
 Object::Object(const Vector2 &mCoords, const Texture2D &mTexture,
                float mRotation, float mScale, const Color &mColor)
-        : m_pos(mCoords), m_texture(mTexture), m_rotation(mRotation),
+        : m_position(mCoords), m_texture(mTexture), m_rotation(mRotation),
           m_scale(mScale), m_color(mColor) {
 }
 
@@ -57,7 +57,7 @@ Object::Object(const Object &obj) {
     m_color = obj.m_color;
     m_rotation = obj.m_rotation;
     m_texture = obj.m_texture;
-    m_pos = obj.m_pos;
+    m_position = obj.m_position;
 }
 
 Object &Object::operator=(const Object &obj) {
@@ -66,7 +66,7 @@ Object &Object::operator=(const Object &obj) {
     m_color = obj.m_color;
     m_rotation = obj.m_rotation;
     m_texture = obj.m_texture;
-    m_pos = obj.m_pos;
+    m_position = obj.m_position;
 
     return *this;
 }
@@ -75,25 +75,49 @@ void Object::update() {
     if (mefiddzy::scenes::IScene::getLoaded().expired())
         return;
 
-    std::vector<Object*> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<Object>> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
 
-    for (Object *cur : objectsInScene) {
+    for (const std::weak_ptr<Object> &objectWeak : objectsInScene) {
+        if (objectWeak.expired())
+            continue;
+
+        auto object = objectWeak.lock();
+
         DrawTextureEx(
-                cur->m_texture,
-                cur->m_pos,
-                cur->m_rotation,
-                cur->m_scale,
-                cur->m_color
+                object->m_texture,
+                object->m_position,
+                object->m_rotation,
+                object->m_scale,
+                object->m_color
         );
 
-        for (std::unique_ptr<IObjectComponent> &curComp : cur->m_components) {
-            curComp->onTick(*cur);
+        for (std::unique_ptr<IObjectComponent> &curComp : object->m_components) {
+            curComp->onTick(*object);
         }
+
+        object->m_lastScale = object->m_scale;
+        object->m_lastRotation = object->m_rotation;
+        object->m_lastPosition = object->m_position;
     }
 }
 
 void mefiddzy::Object::addComponent(std::unique_ptr<IObjectComponent> component) {
     m_components.emplace_back(std::move(component));
+}
+
+float mefiddzy::Object::getDeltaScale() const {
+    return m_scale - m_lastScale;
+}
+
+float mefiddzy::Object::getDeltaRotation() const {
+    return m_rotation - m_lastRotation;
+}
+
+Vector2 mefiddzy::Object::getDeltaPosition() const {
+    return Vector2(
+        m_position.x - m_lastPosition.x,
+        m_position.y - m_lastPosition.y
+    );
 }
 
 
