@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include "scenes/scene.h"
 
-using mefiddzy::Object;
+using rce::Object;
 
 const Vector2& Object::getPosition() const {
     return m_position;
@@ -72,10 +72,10 @@ Object &Object::operator=(const Object &obj) {
 }
 
 void Object::update() {
-    if (mefiddzy::scenes::IScene::getLoaded().expired())
+    if (rce::scenes::IScene::getLoaded().expired())
         return;
 
-    std::vector<std::weak_ptr<Object>> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<Object>> objectsInScene = rce::scenes::IScene::getLoaded().lock()->getLoadedObjects();
 
     for (const std::weak_ptr<Object> &objectWeak : objectsInScene) {
         if (objectWeak.expired())
@@ -101,19 +101,19 @@ void Object::update() {
     }
 }
 
-void mefiddzy::Object::addComponent(std::unique_ptr<IObjectComponent> component) {
+void rce::Object::addComponent(std::unique_ptr<IObjectComponent> component) {
     m_components.emplace_back(std::move(component));
 }
 
-float mefiddzy::Object::getDeltaScale() const {
+float rce::Object::getDeltaScale() const {
     return m_scale - m_lastScale;
 }
 
-float mefiddzy::Object::getDeltaRotation() const {
+float rce::Object::getDeltaRotation() const {
     return m_rotation - m_lastRotation;
 }
 
-Vector2 mefiddzy::Object::getDeltaPosition() const {
+Vector2 rce::Object::getDeltaPosition() const {
     return Vector2(
         m_position.x - m_lastPosition.x,
         m_position.y - m_lastPosition.y

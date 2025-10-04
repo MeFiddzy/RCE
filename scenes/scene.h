@@ -4,7 +4,7 @@
 #include <memory>
 #include "raylib.h"
 
-namespace mefiddzy {
+namespace rce {
     class Object;
     namespace scenes {
         class IScene {

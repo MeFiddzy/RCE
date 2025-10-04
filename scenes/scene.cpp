@@ -2,7 +2,7 @@
 #include "scene.h"
 #include "../object.h"
 
-namespace mefiddzy::scenes {
+namespace rce::scenes {
     std::shared_ptr<IScene> IScene::s_loadedScene = nullptr;
 
     std::vector<std::weak_ptr<Object>> IScene::getLoadedObjects() {

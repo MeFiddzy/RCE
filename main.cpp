@@ -11,8 +11,8 @@ int main() {
     InitWindow(640, 480, "TestNeim");
     SetTargetFPS(60);
 
-    using namespace mefiddzy;
-    using namespace mefiddzy::scenes;
+    using namespace rce;
+    using namespace rce::scenes;
 
     IScene::loadScene<ExampleScene>();
 

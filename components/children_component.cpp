@@ -1,20 +1,20 @@
 #include "children_component.h"
 
-using mefiddzy::ChildrenComponent;
+using rce::ChildrenComponent;
 
-std::pair<bool, bool>& mefiddzy::ChildrenComponent::followPosition() {
+std::pair<bool, bool>& rce::ChildrenComponent::followPosition() {
     return m_followPosition;
 }
 
-bool& mefiddzy::ChildrenComponent::followScale() {
+bool& rce::ChildrenComponent::followScale() {
     return m_followScale;
 }
 
-bool& mefiddzy::ChildrenComponent::followRotation() {
+bool& rce::ChildrenComponent::followRotation() {
     return m_followRotation;
 }
 
-void mefiddzy::ChildrenComponent::onTick(mefiddzy::Object &parent) {
+void rce::ChildrenComponent::onTick(rce::Object &parent) {
     float deltaRotation = parent.getDeltaRotation();
     float deltaScale = parent.getDeltaScale();
     Vector2 deltaPosition = parent.getDeltaPosition();
@@ -49,7 +49,7 @@ void mefiddzy::ChildrenComponent::onTick(mefiddzy::Object &parent) {
     }
 }
 
-ChildrenComponent& mefiddzy::ChildrenComponent::addChild(std::shared_ptr<Object> &child) {
+ChildrenComponent& rce::ChildrenComponent::addChild(std::shared_ptr<Object> &child) {
     m_children.push_back(std::weak_ptr<Object>(child));
 
     return *this;

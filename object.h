@@ -7,7 +7,7 @@
 #include <concepts>
 #include <exception>
 
-namespace mefiddzy{
+namespace rce{
     class Object {
     public:
         [[nodiscard]] const Vector2& getPosition() const;

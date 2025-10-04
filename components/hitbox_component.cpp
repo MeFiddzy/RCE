@@ -4,12 +4,12 @@
 
 #define SHOW_HITBOXES true
 
-using mefiddzy::HitboxComponent;
+using rce::HitboxComponent;
 
-mefiddzy::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(const Object &)>> &onHit,
-                                                HitboxComponent &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
+rce::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(const Object &)>> &onHit,
+                                           HitboxComponent &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
 
-void mefiddzy::HitboxComponent::onTick(mefiddzy::Object &parent) {
+void rce::HitboxComponent::onTick(rce::Object &parent) {
     Rectangle hitbox = {
             parent.getPosition().x + m_collisionBoxOffset.x,
             parent.getPosition().y + m_collisionBoxOffset.y,
@@ -20,10 +20,10 @@ void mefiddzy::HitboxComponent::onTick(mefiddzy::Object &parent) {
     DrawRectangleLines(hitbox.x, hitbox.y, hitbox.width, hitbox.height, RED);
 #endif
 
-    if (mefiddzy::scenes::IScene::getLoaded().expired())
+    if (rce::scenes::IScene::getLoaded().expired())
         return;
 
-    std::vector<std::weak_ptr<Object>> objectsInScene = mefiddzy::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<Object>> objectsInScene = rce::scenes::IScene::getLoaded().lock()->getLoadedObjects();
 
     for (std::weak_ptr<Object> objectWeak : objectsInScene) {
         if (objectWeak.expired())
@@ -55,17 +55,17 @@ void mefiddzy::HitboxComponent::onTick(mefiddzy::Object &parent) {
     }
 }
 
-mefiddzy::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset) : m_collisionBoxOffset(collisionBoxOffset) {}
+rce::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset) : m_collisionBoxOffset(collisionBoxOffset) {}
 
-mefiddzy::HitboxComponent::HitboxComponent(mefiddzy::Object &parent) {
+rce::HitboxComponent::HitboxComponent(rce::Object &parent) {
     m_collisionBoxSize = {
             static_cast<float>(parent.getTexture().width),
             static_cast<float>(parent.getTexture().height)
     };
 }
 
-mefiddzy::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset,
-                                           const Vector2 &collisionBoxSize) : m_collisionBoxSize(collisionBoxSize),
+rce::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset,
+                                      const Vector2 &collisionBoxSize) : m_collisionBoxSize(collisionBoxSize),
                          m_collisionBoxOffset(collisionBoxOffset) {}
 
 

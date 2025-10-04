@@ -3,7 +3,7 @@
 #include "../object.h"
 #include "component.h"
 
-namespace mefiddzy {
+namespace rce {
     class ChildrenComponent : public IObjectComponent {
     public:
 
@@ -18,7 +18,7 @@ namespace mefiddzy {
         bool& followScale();
         std::pair<bool, bool>& followPosition();
 
-        void onTick(mefiddzy::Object &parent) override;
+        void onTick(rce::Object &parent) override;
 
         ChildrenComponent& addChild(std::shared_ptr<Object> &child);
 

@@ -3,8 +3,8 @@
 #include "../components/all.h"
 #include <iostream>
 
-using namespace mefiddzy;
-using namespace mefiddzy::scenes;
+using namespace rce;
+using namespace rce::scenes;
 
 void ExampleScene::gameLoop() {
     if (IsKeyPressed(KEY_F4)) {

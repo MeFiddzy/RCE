@@ -2,12 +2,12 @@
 
 #include "memory"
 
-namespace mefiddzy {
+namespace rce {
     class Object;
 
     class IObjectComponent {
     public:
-        virtual void onTick(mefiddzy::Object &parent) {}
+        virtual void onTick(rce::Object &parent) {}
 
         IObjectComponent() = default;
         virtual ~IObjectComponent() = default;

@@ -5,8 +5,8 @@
 #include "memory"
 #include "raylib.h"
 
-namespace mefiddzy {
-    class HitboxComponent : public mefiddzy::IObjectComponent {
+namespace rce {
+    class HitboxComponent : public rce::IObjectComponent {
     public:
         class OnHitElem {
         public:
@@ -34,7 +34,7 @@ namespace mefiddzy {
         explicit HitboxComponent(Object &parent);
         HitboxComponent() = default;
 
-        void onTick(mefiddzy::Object &self) override;
+        void onTick(rce::Object &self) override;
 
         OnHitElem onHit() {
             return OnHitElem(m_onHit, *this);

@@ -2,7 +2,7 @@
 
 #include "scene.h"
 
-namespace mefiddzy::scenes {
+namespace rce::scenes {
     class ExampleScene : public IScene {
     public:
         void gameLoop() override;
