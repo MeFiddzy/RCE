@@ -10,9 +10,9 @@ namespace rce {
     public:
         class OnHitElem {
         public:
-            explicit OnHitElem(std::vector<std::function<void(const Object &)>> &onHit, HitboxComponent &hitbox);
+            explicit OnHitElem(std::vector<std::function<void(Object &)>> &onHit, HitboxComponent &hitbox);
 
-            __forceinline OnHitElem& addListener(const std::function<void(const Object&)> &listener) {
+            __forceinline OnHitElem& addListener(const std::function<void(Object&)> &listener) {
                 m_onHit.emplace_back(listener);
 
                 return *this;
@@ -25,7 +25,7 @@ namespace rce {
             OnHitElem(const OnHitElem &&obj) = delete;
         private:
             HitboxComponent &m_hitbox;
-            std::vector<std::function<void(const Object &)>> &m_onHit;
+            std::vector<std::function<void(Object &)>> &m_onHit;
         };
 
     public:
@@ -40,11 +40,11 @@ namespace rce {
             return OnHitElem(m_onHit, *this);
         }
 
-        Vector2 getCollisionBoxSize() const ;
+        [[nodiscard]] Vector2 getCollisionBoxSize() const ;
 
     private:
         Vector2 m_collisionBoxSize;
         Vector2 m_collisionBoxOffset;
-        std::vector<std::function<void(const Object&)>> m_onHit;
+        std::vector<std::function<void(Object&)>> m_onHit;
     };
 }

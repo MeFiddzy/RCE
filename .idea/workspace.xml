@@ -11,10 +11,10 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="raylib_object_engine" targetName="raylib_object_engine" />
-      <config projectName="raylib_object_engine" targetName="glfw" />
-      <config projectName="raylib_object_engine" targetName="raylib" />
-      <config projectName="raylib_object_engine" targetName="update_mappings" />
+      <config projectName="rce" targetName="glfw" />
+      <config projectName="rce" targetName="rce" />
+      <config projectName="rce" targetName="raylib" />
+      <config projectName="rce" targetName="update_mappings" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -24,7 +24,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6346fe5-429b-4d68-8531-3b176415070c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/rce/components/find_object_component.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/rce/components/find_object_component.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/rce/scenes/scene.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/rce/scenes/scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/all.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/all.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/children_component.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/children_component.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/children_component.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/children_component.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/component.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/component.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/hitbox_component.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/hitbox_component.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/hitbox_component.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/hitbox_component.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/object.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/object.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/object.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/ex_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/ex_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/example_scene" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/example_scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/scene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/scene.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +78,7 @@
   "keyToString": {
     "CMake Application.raylib_object_engine.executor": "Run",
     "CMake Application.raylib_undertale_engine.executor": "Run",
+    "CMake Application.rce.executor": "Run",
     "CMake Application.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -79,37 +99,39 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Info\raylib\test\include\rce" />
+      <recent name="D:\Info\raylib\test\include" />
       <recent name="D:\Info\raylib\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.raylib_object_engine">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+  <component name="RunManager" selected="CMake Application.rce">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="raylib_object_engine" TARGET_NAME="glfw" CONFIG_NAME="Debug">
+    <configuration name="raylib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="raylib" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="raylib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="raylib_object_engine" TARGET_NAME="raylib" CONFIG_NAME="Debug">
+    <configuration name="rce" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="rce" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="rce" RUN_TARGET_NAME="rce">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="raylib_object_engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="raylib_object_engine" TARGET_NAME="raylib_object_engine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="raylib_object_engine" RUN_TARGET_NAME="raylib_object_engine">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="update_mappings" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="raylib_object_engine" TARGET_NAME="update_mappings" CONFIG_NAME="Debug">
+    <configuration name="update_mappings" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="update_mappings" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.raylib_object_engine" />
+      <item itemvalue="CMake Application.rce" />
       <item itemvalue="CMake Application.raylib" />
       <item itemvalue="CMake Application.glfw" />
       <item itemvalue="CMake Application.update_mappings" />
@@ -126,7 +148,9 @@
       <workItem from="1759233432998" duration="3078000" />
       <workItem from="1759254378042" duration="6192000" />
       <workItem from="1759410624452" duration="19258000" />
-      <workItem from="1759433813340" duration="25386000" />
+      <workItem from="1759433813340" duration="26792000" />
+      <workItem from="1759608299810" duration="279000" />
+      <workItem from="1759693725739" duration="3668000" />
     </task>
     <servers />
   </component>

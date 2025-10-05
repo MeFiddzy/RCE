@@ -9,9 +9,9 @@ namespace rce {
     public:
         virtual void onTick(rce::Object &parent) {}
 
+        virtual void onAdd(rce::Object &parent) {}
+
         IObjectComponent() = default;
         virtual ~IObjectComponent() = default;
-
-    private:
     };
 }

@@ -1,10 +1,9 @@
-#include "example_scene"
+#include "example_scene.h"
 #include "../object.h"
 #include "../components/all.h"
 #include <iostream>
 
 using namespace rce;
-using namespace rce::scenes;
 
 void ExampleScene::gameLoop() {
     if (IsKeyPressed(KEY_F4)) {
@@ -40,9 +39,13 @@ void ExampleScene::loadScene() {
     m_objects.push_back(std::make_unique<Object>(Object{{1000, 1000}}));
 
     m_objects[0]->addComponent(std::make_unique<HitboxComponent>(
-            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](const Object &parent){
-                //m_backgroundColor = RED;
-                std::cout << "collide\n";
+            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](Object &other){
+                if (!other.hasComponent<FindObjectIDComponent>())
+                    return;
+
+                if (FindObjectIDComponent::getObjectByID("Test") == &other) {
+                    std::cout << "collide\n";
+                }
             }).build()
     ));
 
@@ -51,4 +54,5 @@ void ExampleScene::loadScene() {
     m_objects[1]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
 
     m_objects[2]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent{{0, 0}, {10, 10}}));
+    m_objects[2]->addComponent(std::make_unique<FindObjectIDComponent>(FindObjectIDComponent{"Test"}));
 }

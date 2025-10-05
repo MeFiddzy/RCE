@@ -72,10 +72,10 @@ Object &Object::operator=(const Object &obj) {
 }
 
 void Object::update() {
-    if (rce::scenes::IScene::getLoaded().expired())
+    if (rce::IScene::getLoaded().expired())
         return;
 
-    std::vector<std::weak_ptr<Object>> objectsInScene = rce::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<Object>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
 
     for (const std::weak_ptr<Object> &objectWeak : objectsInScene) {
         if (objectWeak.expired())
@@ -102,6 +102,8 @@ void Object::update() {
 }
 
 void rce::Object::addComponent(std::unique_ptr<IObjectComponent> component) {
+    component->onAdd(*this);
+
     m_components.emplace_back(std::move(component));
 }
 

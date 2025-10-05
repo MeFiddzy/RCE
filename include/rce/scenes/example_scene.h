@@ -2,7 +2,7 @@
 
 #include "scene.h"
 
-namespace rce::scenes {
+namespace rce {
     class ExampleScene : public IScene {
     public:
         void gameLoop() override;

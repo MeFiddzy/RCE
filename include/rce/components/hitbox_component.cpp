@@ -1,12 +1,12 @@
 #include "hitbox_component.h"
 #include "../object.h"
-#include "../scenes/scene.h"
+#include "rce/scenes/scene.h"
 
 #define SHOW_HITBOXES true
 
 using rce::HitboxComponent;
 
-rce::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(const Object &)>> &onHit,
+rce::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(Object &)>> &onHit,
                                            HitboxComponent &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
 
 void rce::HitboxComponent::onTick(rce::Object &parent) {
@@ -20,10 +20,10 @@ void rce::HitboxComponent::onTick(rce::Object &parent) {
     DrawRectangleLines(hitbox.x, hitbox.y, hitbox.width, hitbox.height, RED);
 #endif
 
-    if (rce::scenes::IScene::getLoaded().expired())
+    if (rce::IScene::getLoaded().expired())
         return;
 
-    std::vector<std::weak_ptr<Object>> objectsInScene = rce::scenes::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<Object>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
 
     for (std::weak_ptr<Object> objectWeak : objectsInScene) {
         if (objectWeak.expired())
@@ -67,6 +67,10 @@ rce::HitboxComponent::HitboxComponent(rce::Object &parent) {
 rce::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset,
                                       const Vector2 &collisionBoxSize) : m_collisionBoxSize(collisionBoxSize),
                          m_collisionBoxOffset(collisionBoxOffset) {}
+
+Vector2 rce::HitboxComponent::getCollisionBoxSize() const {
+    return m_collisionBoxSize;
+}
 
 
 

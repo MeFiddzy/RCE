@@ -2,17 +2,16 @@
 #include <raylib.h>
 #include <memory>
 
-#include "scenes/scene.h"
-#include "components/all.h"
-#include "scenes/example_scene"
-#include "object.h"
+#include "rce/scenes/scene.h"
+#include "rce/components/all.h"
+#include "rce/scenes/example_scene.h"
+#include "rce/object.h"
 
 int main() {
     InitWindow(640, 480, "TestNeim");
     SetTargetFPS(60);
 
     using namespace rce;
-    using namespace rce::scenes;
 
     IScene::loadScene<ExampleScene>();
 
