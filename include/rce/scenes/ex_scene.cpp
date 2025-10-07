@@ -33,7 +33,7 @@ void ExampleScene::onTick() {
                         });
 }
 
-void ExampleScene::onLoadScene() {
+void ExampleScene::onLoad() {
     m_objects.push_back(std::make_shared<Object>(Object{{0, 0},LoadTexture("../resources/player.png")}));
     m_objects.push_back(std::make_shared<Object>(Object{{36, 36},LoadTexture("../resources/player.png")}));
     m_objects.push_back(std::make_shared<Object>(Object{{1000, 1000}}));

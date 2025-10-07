@@ -7,7 +7,7 @@ namespace rce {
     public:
         void onTick() override;
 
-        void onLoadScene() override;
+        void onLoad() override;
     private:
 
     };

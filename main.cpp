@@ -13,7 +13,7 @@ int main() {
 
     using namespace rce;
 
-    IScene::onLoadScene<ExampleScene>();
+    IScene::loadScene<ExampleScene>();
 
     while (!WindowShouldClose()) {
         if (IScene::getLoaded().expired())

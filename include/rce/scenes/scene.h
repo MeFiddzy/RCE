@@ -18,16 +18,16 @@ namespace rce {
 
         virtual void onTick() {}
 
-        virtual void onLoadScene() {}
+        virtual void onLoad() {}
 
         std::vector<std::weak_ptr<Object>> getLoadedObjects();
 
         template<typename Scene>
-        static void onLoadScene() {
+        static void loadScene() {
             static_assert(std::derived_from<Scene, IScene>, "Scene must derive from IScene interface!");
 
             s_loadedScene = std::make_shared<Scene>();
-            s_loadedScene->onLoadScene();
+            s_loadedScene->onLoad();
         }
 
         static std::weak_ptr<IScene> getLoaded() {
