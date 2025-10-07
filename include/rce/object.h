@@ -34,7 +34,7 @@ namespace rce{
         void addComponent(std::unique_ptr<IObjectComponent> component);
 
         explicit Object(const Vector2 &mCoords, const Texture2D &mTexture = Texture2D(),
-               float mRotation = 0.0f, float mScale = 1.0f, const Color &mColor = WHITE);
+               float mRotation = 0.0f, float mScale = 1.0f, uint32_t zOrder = UINT_MAX, const Color &mColor = WHITE);
 
         Object(const Object &obj);
 
@@ -75,6 +75,9 @@ namespace rce{
             return std::weak_ptr<Component>{};
         }
 
+        void setZOrder(uint32_t zOrder);
+
+        uint32_t getZOrder() const;
 
         [[nodiscard]] float getDeltaScale() const;
 
@@ -87,13 +90,15 @@ namespace rce{
     private:
         Vector2 m_position{};
         Texture2D m_texture{};
-        float m_rotation;
-        float m_scale;
+        float m_rotation{};
+        float m_scale{};
         Color m_color{};
 
+        uint32_t m_zOrder{UINT_MAX};
+
         Vector2 m_lastPosition{};
-        float m_lastRotation;
-        float m_lastScale;
+        float m_lastRotation{};
+        float m_lastScale{};
 
         std::vector<std::shared_ptr<IObjectComponent>> m_components;
     };

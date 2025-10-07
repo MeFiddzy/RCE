@@ -23,18 +23,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6346fe5-429b-4d68-8531-3b176415070c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/components/hitbox_component.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/components/hitbox_component.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/object.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/object.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/object.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/scenes/ex_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/ex_scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/scenes/example_scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/example_scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/scenes/scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/rce/scenes/scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="b6346fe5-429b-4d68-8531-3b176415070c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +65,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "z-order-layers",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -140,7 +129,7 @@
       <workItem from="1759410624452" duration="19258000" />
       <workItem from="1759433813340" duration="26792000" />
       <workItem from="1759608299810" duration="279000" />
-      <workItem from="1759693725739" duration="12119000" />
+      <workItem from="1759693725739" duration="12881000" />
     </task>
     <servers />
   </component>

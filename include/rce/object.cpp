@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "scenes/scene.h"
 #include "rce/components/component.h"
+#include <algorithm>
 
 using namespace rce;
 
@@ -47,9 +48,9 @@ void Object::setTint(const Color &mColor) {
 }
 
 Object::Object(const Vector2 &mCoords, const Texture2D &mTexture,
-               float mRotation, float mScale, const Color &mColor)
+               float mRotation, float mScale, uint32_t zOrder, const Color &mColor)
         : m_position(mCoords), m_texture(mTexture), m_rotation(mRotation),
-          m_scale(mScale), m_color(mColor) {
+          m_scale(mScale), m_color(mColor), m_zOrder(zOrder) {
 }
 
 Object::Object(const Object &obj) {
@@ -88,6 +89,13 @@ void Object::update() {
         return;
 
     std::vector<std::weak_ptr<Object>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
+
+    std::sort(objectsInScene.begin(), objectsInScene.end(), [&](const std::weak_ptr<Object> &a, std::weak_ptr<Object> &b){
+        if (a.expired() && b.expired())
+            return false;
+
+        return a.lock()->getZOrder() < b.lock()->getZOrder();
+    });
 
     for (const std::weak_ptr<Object> &objectWeak : objectsInScene) {
         if (objectWeak.expired())
@@ -139,5 +147,13 @@ Vector2 rce::Object::getDeltaPosition() const {
         m_position.x - m_lastPosition.x,
         m_position.y - m_lastPosition.y
     );
+}
+
+void Object::setZOrder(uint32_t zOrder) {
+    m_zOrder = zOrder;
+}
+
+uint32_t Object::getZOrder() const {
+    return m_zOrder;
 }
 

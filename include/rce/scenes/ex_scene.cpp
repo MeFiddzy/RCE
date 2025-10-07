@@ -34,9 +34,9 @@ void ExampleScene::ofTick() {
 }
 
 void ExampleScene::onLoadScene() {
-    m_objects.push_back(std::make_unique<Object>(Object{{0, 0},LoadTexture("../resources/player.png")}));
-    m_objects.push_back(std::make_unique<Object>(Object{{36, 36},LoadTexture("../resources/player.png")}));
-    m_objects.push_back(std::make_unique<Object>(Object{{1000, 1000}}));
+    m_objects.push_back(std::make_shared<Object>(Object{{0, 0},LoadTexture("../resources/player.png")}));
+    m_objects.push_back(std::make_shared<Object>(Object{{36, 36},LoadTexture("../resources/player.png")}));
+    m_objects.push_back(std::make_shared<Object>(Object{{1000, 1000}}));
 
     m_objects[0]->addComponent(std::make_unique<HitboxComponent>(
             HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](Object &other){
@@ -50,6 +50,8 @@ void ExampleScene::onLoadScene() {
     ));
 
     m_objects[0]->addComponent(std::make_unique<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
+    m_objects[0]->setZOrder(0);
+    m_objects[1]->setZOrder(1);
 
     m_objects[1]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
 
