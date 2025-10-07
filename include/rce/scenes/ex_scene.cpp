@@ -5,7 +5,7 @@
 
 using namespace rce;
 
-void ExampleScene::gameLoop() {
+void ExampleScene::ofTick() {
     if (IsKeyPressed(KEY_F4)) {
         ToggleBorderlessWindowed();
     }
@@ -33,7 +33,7 @@ void ExampleScene::gameLoop() {
                         });
 }
 
-void ExampleScene::loadScene() {
+void ExampleScene::onLoadScene() {
     m_objects.push_back(std::make_unique<Object>(Object{{0, 0},LoadTexture("../resources/player.png")}));
     m_objects.push_back(std::make_unique<Object>(Object{{36, 36},LoadTexture("../resources/player.png")}));
     m_objects.push_back(std::make_unique<Object>(Object{{1000, 1000}}));

@@ -6,6 +6,7 @@
 #include "components/component.h"
 #include <concepts>
 #include <exception>
+#include <iostream>
 
 namespace rce{
     class Object {
@@ -46,7 +47,7 @@ namespace rce{
         static void update();
 
         template<typename Component>
-        bool hasComponent() const {
+        [[nodiscard]] bool hasComponent() const {
             static_assert(std::derived_from<Component, IObjectComponent>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
 
             for (const auto &component : m_components) {
@@ -58,23 +59,30 @@ namespace rce{
         }
 
         template<typename Component>
-        Component& getComponent() {
-            static_assert(std::derived_from<Component, IObjectComponent>, "Object::getComponent<Component> | Component doesn't derive from IObjectComponent.");
+        [[nodiscard]] std::weak_ptr<Component> getComponent() const{
+            static_assert(std::derived_from<Component, IObjectComponent>,
+                          "Object::getComponent<Component> | Component doesn't derive from IObjectComponent.");
 
-            for (const auto &component : m_components) {
-                if (auto ptr = dynamic_cast<Component*>(component.get())) {
-                    return *ptr;
+            for (auto &component : m_components) {
+                if (auto componentWeak = std::dynamic_pointer_cast<Component>(component)) {
+                    return componentWeak;
                 }
             }
 
-            throw std::runtime_error("Object doesn't have component. Use hasComponent<>() to check!");
+            std::cerr << "Returned nullptr from rce::Object::getComponent<typename Component>\n"
+                      << "Reason: The chosen Component type doesn't exist in the specified rce::Object\n";
+
+            return std::weak_ptr<Component>{};
         }
 
-        float getDeltaScale() const;
 
-        float getDeltaRotation() const;
+        [[nodiscard]] float getDeltaScale() const;
 
-        Vector2 getDeltaPosition() const;
+        [[nodiscard]] float getDeltaRotation() const;
+
+        [[nodiscard]] Vector2 getDeltaPosition() const;
+
+        [[nodiscard]] auto getComponents();
 
     private:
         Vector2 m_position{};
@@ -87,6 +95,6 @@ namespace rce{
         float m_lastRotation;
         float m_lastScale;
 
-        std::vector<std::unique_ptr<IObjectComponent>> m_components;
+        std::vector<std::shared_ptr<IObjectComponent>> m_components;
     };
 }

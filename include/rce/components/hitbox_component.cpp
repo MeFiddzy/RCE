@@ -25,7 +25,7 @@ void rce::HitboxComponent::onTick(rce::Object &parent) {
 
     std::vector<std::weak_ptr<Object>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
 
-    for (std::weak_ptr<Object> objectWeak : objectsInScene) {
+    for (const std::weak_ptr<Object> &objectWeak : objectsInScene) {
         if (objectWeak.expired())
             continue;
 
@@ -34,9 +34,15 @@ void rce::HitboxComponent::onTick(rce::Object &parent) {
         if (object.get() == &parent || !(object->hasComponent<HitboxComponent>()))
             continue;
 
-        const auto &hitboxObj = object->getComponent<HitboxComponent>();
-        const auto &hitboxBoxSize = hitboxObj.m_collisionBoxSize;
-        const auto &hitboxBoxOffset = hitboxObj.m_collisionBoxOffset;
+        std::weak_ptr<HitboxComponent> hitboxObjWeak = object->getComponent<HitboxComponent>();
+
+        if (hitboxObjWeak.expired())
+            continue;
+
+        std::shared_ptr<HitboxComponent> hitboxObj = hitboxObjWeak.lock();
+
+        const auto &hitboxBoxSize = hitboxObj->m_collisionBoxSize;
+        const auto &hitboxBoxOffset = hitboxObj->m_collisionBoxOffset;
 
         Rectangle curRect = {
                 object->getPosition().x + hitboxBoxOffset.x,

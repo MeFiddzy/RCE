@@ -35,12 +35,6 @@ Makefile
 /.idea/
 /cmake-build-*/
 
-# Visual Studio
-*.vcxproj
-*.vcxproj.user
-*.sln
-*.suo
-
 # Logs
 *.log
 

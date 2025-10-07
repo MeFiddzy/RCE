@@ -13,18 +13,18 @@ int main() {
 
     using namespace rce;
 
-    IScene::loadScene<ExampleScene>();
+    IScene::onLoadScene<ExampleScene>();
 
     while (!WindowShouldClose()) {
         if (IScene::getLoaded().expired())
             continue;
 
-        std::shared_ptr<IScene> scene = IScene::getLoaded().lock();\
+        std::shared_ptr<IScene> scene = IScene::getLoaded().lock();
 
         BeginDrawing();
         ClearBackground(scene->getBackgroundColor());
 
-        scene->gameLoop();
+        scene->ofTick();
 
         Object::update();
         EndDrawing();

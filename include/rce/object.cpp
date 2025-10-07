@@ -2,8 +2,9 @@
 #include <memory>
 #include "raylib.h"
 #include "scenes/scene.h"
+#include "rce/components/component.h"
 
-using rce::Object;
+using namespace rce;
 
 const Vector2& Object::getPosition() const {
     return m_position;
@@ -71,6 +72,17 @@ Object &Object::operator=(const Object &obj) {
     return *this;
 }
 
+auto Object::getComponents() {
+    std::vector<std::weak_ptr<IObjectComponent>> components;
+    components.reserve(m_components.size());
+
+    for (auto &comp : m_components)
+        components.push_back(comp);
+
+    return components;
+}
+
+
 void Object::update() {
     if (rce::IScene::getLoaded().expired())
         return;
@@ -91,8 +103,15 @@ void Object::update() {
                 object->m_color
         );
 
-        for (std::unique_ptr<IObjectComponent> &curComp : object->m_components) {
-            curComp->onTick(*object);
+        auto components = object->getComponents();
+
+        for (std::weak_ptr<IObjectComponent> &weakComponent : components) {
+            if (weakComponent.expired())
+                continue;
+
+            auto component = weakComponent.lock();
+
+            component->onTick(*object);
         }
 
         object->m_lastScale = object->m_scale;
@@ -121,5 +140,4 @@ Vector2 rce::Object::getDeltaPosition() const {
         m_position.y - m_lastPosition.y
     );
 }
-
 
