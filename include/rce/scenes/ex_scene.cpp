@@ -5,7 +5,7 @@
 
 using namespace rce;
 
-void ExampleScene::ofTick() {
+void ExampleScene::onTick() {
     if (IsKeyPressed(KEY_F4)) {
         ToggleBorderlessWindowed();
     }

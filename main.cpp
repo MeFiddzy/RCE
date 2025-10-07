@@ -24,7 +24,7 @@ int main() {
         BeginDrawing();
         ClearBackground(scene->getBackgroundColor());
 
-        scene->ofTick();
+        scene->onTick();
 
         Object::update();
         EndDrawing();

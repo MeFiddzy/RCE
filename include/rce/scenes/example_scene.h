@@ -5,7 +5,7 @@
 namespace rce {
     class ExampleScene : public IScene {
     public:
-        void ofTick() override;
+        void onTick() override;
 
         void onLoadScene() override;
     private:

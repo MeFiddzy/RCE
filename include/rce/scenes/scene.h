@@ -16,7 +16,7 @@ namespace rce {
             m_backgroundColor = RAYWHITE;
         }
 
-        virtual void ofTick() {}
+        virtual void onTick() {}
 
         virtual void onLoadScene() {}
 
