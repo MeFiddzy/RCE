@@ -1,6 +1,7 @@
 #include <vector>
 #include <unordered_map>
 #include "rce/components/component.h"
+#include "string"
 
 namespace rce {
     class FindObjectIDComponent : public IObjectComponent {
