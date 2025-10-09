@@ -34,11 +34,11 @@ void ExampleScene::onTick() {
 }
 
 void ExampleScene::onLoad() {
-    m_objects.push_back(std::make_shared<Object>(Object{{0, 0},LoadTexture("../resources/player.png")}));
-    m_objects.push_back(std::make_shared<Object>(Object{{36, 36},LoadTexture("../resources/player.png")}));
+    m_objects.push_back(std::make_shared<Object>(Object{{0, 0},LoadTexture("resources/player.png")}));
+    m_objects.push_back(std::make_shared<Object>(Object{{36, 36},LoadTexture("resources/player.png")}));
     m_objects.push_back(std::make_shared<Object>(Object{{1000, 1000}}));
 
-    m_objects[0]->addComponent(std::make_unique<HitboxComponent>(
+    m_objects[0]->addComponent(std::make_shared<HitboxComponent>(
             HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](Object &other){
                 if (!other.hasComponent<FindObjectIDComponent>())
                     return;
@@ -49,12 +49,12 @@ void ExampleScene::onLoad() {
             }).build()
     ));
 
-    m_objects[0]->addComponent(std::make_unique<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
+    m_objects[0]->addComponent(std::make_shared<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
     m_objects[0]->setZOrder(0);
     m_objects[1]->setZOrder(1);
 
-    m_objects[1]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
+    m_objects[1]->addComponent(std::make_shared<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
 
-    m_objects[2]->addComponent(std::make_unique<HitboxComponent>(HitboxComponent{{0, 0}, {10, 10}}));
-    m_objects[2]->addComponent(std::make_unique<FindObjectIDComponent>(FindObjectIDComponent{"Test"}));
+    m_objects[2]->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{{0, 0}, {10, 10}}));
+    m_objects[2]->addComponent(std::make_shared<FindObjectIDComponent>(FindObjectIDComponent{"Test"}));
 }

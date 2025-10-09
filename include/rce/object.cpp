@@ -128,7 +128,7 @@ void Object::update() {
     }
 }
 
-void rce::Object::addComponent(std::unique_ptr<IObjectComponent> component) {
+void rce::Object::addComponent(std::shared_ptr<IObjectComponent> component) {
     component->onAdd(*this);
 
     m_components.emplace_back(std::move(component));

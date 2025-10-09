@@ -31,7 +31,7 @@ namespace rce{
 
         void setTint(const Color &mColor);
 
-        void addComponent(std::unique_ptr<IObjectComponent> component);
+        void addComponent(std::shared_ptr<IObjectComponent> component);
 
         explicit Object(const Vector2 &mCoords, const Texture2D &mTexture = Texture2D(),
                float mRotation = 0.0f, float mScale = 1.0f, uint32_t zOrder = UINT_MAX, const Color &mColor = WHITE);
