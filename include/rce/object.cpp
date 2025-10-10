@@ -1,4 +1,4 @@
-#include "object.h"
+8#include "object.h"
 #include <memory>
 #include "raylib.h"
 #include "scenes/scene.h"
@@ -91,7 +91,7 @@ void Object::update() {
     std::vector<std::weak_ptr<Object>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
 
     std::sort(objectsInScene.begin(), objectsInScene.end(), [&](const std::weak_ptr<Object> &a, std::weak_ptr<Object> &b){
-        if (a.expired() && b.expired())
+        if (a.expired() || b.expired())
             return false;
 
         return a.lock()->getZOrder() < b.lock()->getZOrder();
