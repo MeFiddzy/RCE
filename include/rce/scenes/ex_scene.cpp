@@ -28,9 +28,9 @@ void ExampleScene::onTick() {
     Object *player = m_objects[0].get() ;
 
     player->setPosition({
-                                player->getPosition().x + addX,
-                                player->getPosition().y + addY
-                        });
+        player->getPosition().x + addX,
+        player->getPosition().y + addY
+    });
 }
 
 void ExampleScene::onLoad() {

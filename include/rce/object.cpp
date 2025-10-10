@@ -1,4 +1,4 @@
-8#include "object.h"
+#include "object.h"
 #include <memory>
 #include "raylib.h"
 #include "scenes/scene.h"
