@@ -7,6 +7,8 @@ using namespace rce;
 
 std::shared_ptr<IScene> IScene::s_loadedScene = nullptr;
 
+float IScene::s_deltaTime = 0;
+
 std::vector<std::weak_ptr<Object>> IScene::getLoadedObjects() {
     std::vector<std::weak_ptr<Object>> objectsCopy;
 
@@ -15,4 +17,8 @@ std::vector<std::weak_ptr<Object>> IScene::getLoadedObjects() {
     }
 
     return std::move(objectsCopy);
+}
+
+float IScene::getDeltaTime() {
+    return s_deltaTime;
 }

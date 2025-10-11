@@ -101,5 +101,7 @@ namespace rce{
         float m_lastScale{};
 
         std::vector<std::shared_ptr<IObjectComponent>> m_components;
+
+        static float s_lastFrameTime;
     };
 }

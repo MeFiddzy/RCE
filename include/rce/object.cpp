@@ -4,6 +4,8 @@
 #include "scenes/scene.h"
 #include "rce/components/component.h"
 #include <algorithm>
+#include "rce/scenes/scene.h"
+#include <chrono>
 
 using namespace rce;
 
@@ -83,8 +85,26 @@ auto Object::getComponents() {
     return components;
 }
 
+float Object::s_lastFrameTime = 0;
 
 void Object::update() {
+    float nowTime;
+    {
+        using namespace std::chrono;
+
+        auto now = steady_clock::now();
+        long long ms = duration_cast<milliseconds>(now.time_since_epoch()).count();
+
+        nowTime = ms / 1000.0;
+    }
+
+    if (s_lastFrameTime == 0)
+        s_lastFrameTime = nowTime;
+
+    IScene::s_deltaTime = nowTime - s_lastFrameTime;
+
+    s_lastFrameTime = nowTime;
+
     if (rce::IScene::getLoaded().expired())
         return;
 

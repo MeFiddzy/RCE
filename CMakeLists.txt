@@ -27,13 +27,15 @@ add_executable(rce
         include/rce/components/hitbox_component.h
         include/rce/components/all.h
         include/rce/scenes/scene.h
-        include/rce/scenes/ex_scene.cpp
-        include/rce/scenes/example_scene.h
+        include/rce/scenes/examples/example_scene.cpp
+        include/rce/scenes/examples/example_scene.h
         include/rce/scenes/scene.cpp
         include/rce/components/children_component.h
         include/rce/components/children_component.cpp
         include/rce/components/find_object_component.h
         include/rce/components/find_object_component.cpp
+        include/rce/scenes/util/dt_ratio_scene.cpp
+        include/rce/scenes/util/dt_ratio_scene.h
 )
 
 target_include_directories(rce PRIVATE include)

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "scene.h"
+#include "rce/scenes/scene.h"
 
-namespace rce {
+namespace rce::examples {
     class ExampleScene : public IScene {
     public:
         void onTick() override;

@@ -1,14 +1,19 @@
 #include "example_scene.h"
-#include "../object.h"
-#include "../components/all.h"
+#include "rce/scenes/scene.h"
+#include "rce/object.h"
+#include "rce/components/all.h"
 #include <iostream>
 
-using namespace rce;
+using namespace rce::examples;
 
 void ExampleScene::onTick() {
     if (IsKeyPressed(KEY_F4)) {
         ToggleBorderlessWindowed();
     }
+
+    float deltaTime = IScene::getDeltaTime();
+
+    std::cout << deltaTime * 100 << '\n';
 
     float addX = 0., addY = 0.;
 
@@ -28,8 +33,8 @@ void ExampleScene::onTick() {
     Object *player = m_objects[0].get() ;
 
     player->setPosition({
-        player->getPosition().x + addX,
-        player->getPosition().y + addY
+        player->getPosition().x + (addX * (deltaTime * RATIO_DELTA_TIME)),
+        player->getPosition().y + (addY * (deltaTime * RATIO_DELTA_TIME))
     });
 }
 
