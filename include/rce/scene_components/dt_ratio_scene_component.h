@@ -1,6 +1,6 @@
 #pragma once
 
-#include "rce/scenes/scene.h"
+#include "rce/scene_components/scene_component.h"
 
 namespace rce {
     /**
@@ -8,11 +8,11 @@ namespace rce {
      * The longer you keep and app with this scene on, the more accurate is the result.
      * This is intended to be run at 60 FPS.
      */
-    class DeltaTimeRatioScene : public IScene {
+    class DeltaTimeRatioSceneComponent : public ISceneComponent {
     public:
-        void onTick() override;
+        void onSceneUnLoad(std::weak_ptr<IScene> scene) override;
 
-        void onUnLoad() override;
+        void onSceneTick(std::weak_ptr<IScene> scene) override;
     private:
         float m_sum = 0;
     };

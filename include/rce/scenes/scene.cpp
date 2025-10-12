@@ -22,3 +22,7 @@ std::vector<std::weak_ptr<Object>> IScene::getLoadedObjects() {
 float IScene::getDeltaTime() {
     return s_deltaTime;
 }
+
+void IScene::addSceneComponent(std::shared_ptr<ISceneComponent> sceneComponent) {
+    m_sceneComponents.emplace_back(std::move(sceneComponent));
+}
