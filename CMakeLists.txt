@@ -34,9 +34,7 @@ add_executable(rce
         include/rce/object_components/children_component.cpp
         include/rce/object_components/find_object_component.h
         include/rce/object_components/find_object_component.cpp
-        include/rce/scene_components/dt_ratio_scene_component.cpp
-        include/rce/scene_components/dt_ratio_scene_component.h
-        include/rce/scene_components/scene_component.h
+        include/rce/systems/system.h
 )
 
 target_include_directories(rce PRIVATE include)

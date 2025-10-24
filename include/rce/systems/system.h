@@ -5,9 +5,9 @@
 namespace rce {
     class IScene;
 
-    class ISceneComponent {
+    class ISystem {
     public:
-        virtual ~ISceneComponent() = default;
+        virtual ~ISystem() = default;
 
         virtual void onSceneTick(std::weak_ptr<IScene> scene) {}
 
@@ -15,4 +15,6 @@ namespace rce {
 
         virtual void onSceneUnLoad (std::weak_ptr<IScene> scene) {}
     };
+
+   typedef ISystem ISceneComponent;
 }

@@ -2,7 +2,6 @@
 #include "rce/scenes/scene.h"
 #include "rce/object.h"
 #include "rce/object_components/all.h"
-#include "rce/scene_components/dt_ratio_scene_component.h"
 #include <iostream>
 
 using namespace rce::examples;
@@ -11,6 +10,8 @@ void ExampleScene::onTick() {
     if (IsKeyPressed(KEY_F4)) {
         ToggleBorderlessWindowed();
     }
+
+    std::cout << GetFPS() << '\n';
 
     float deltaTime = IScene::getDeltaTime();
 
@@ -38,8 +39,6 @@ void ExampleScene::onTick() {
 }
 
 void ExampleScene::onLoad() {
-    addSceneComponent(std::make_shared<DeltaTimeRatioSceneComponent>());
-
     m_objects.push_back(std::make_shared<Object>(Object{{0, 0},LoadTexture("resources/player.png")}));
     m_objects.push_back(std::make_shared<Object>(Object{{36, 36},LoadTexture("resources/player.png")}));
     m_objects.push_back(std::make_shared<Object>(Object{{1000, 1000}}));

@@ -11,7 +11,7 @@
 int main() {
     // create window
     InitWindow(640, 480, "TestNeim");
-    SetTargetFPS(60);
+    SetTargetFPS(180);
 
     using namespace rce;
 
