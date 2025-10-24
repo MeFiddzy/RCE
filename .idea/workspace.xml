@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="rce" targetName="rce" />
+      <config projectName="rce" targetName="glfw" />
+      <config projectName="rce" targetName="raylib" />
+      <config projectName="rce" targetName="update_mappings" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="build" CONFIG_NAME="Debug" NO_GENERATOR="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b6346fe5-429b-4d68-8531-3b176415070c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/examples/others/rlgl_standalone.c" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/examples/others/rlgl_standalone.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shaders/shaders_palette_switch.c" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shaders/shaders_palette_switch.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shapes/raygui.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shapes/raygui.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/msf_gif.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/msf_gif.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/rlsw.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/rlsw.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/stb_image.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/stb_image.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/stb_image_write.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/stb_image_write.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/stb_truetype.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/stb_truetype.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/vox_loader.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/external/vox_loader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/raylib.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/raylib.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/raymath.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/raymath.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/rcamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/rcamera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/rlgl.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/rlgl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/rmodels.c" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/rmodels.c" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="3.4" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="33PzKXL4Nymp12N1nKObQAOIIEE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;CMake Application.Run.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.raylib_object_engine.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.raylib_undertale_engine.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.rce.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;Shell Script.Build.executor&quot;: &quot;Run&quot;,
+    &quot;Shell Script.RCE App.executor&quot;: &quot;Run&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Info/raylib/RCE/build/Debug&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CMakeSettings&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Info\raylib\RCE\include\rce\scenes\examples" />
+      <recent name="D:\Info\raylib\test\include\rce" />
+      <recent name="D:\Info\raylib\test\include" />
+      <recent name="D:\Info\raylib\test\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.rce">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/build/Debug/rce.exe" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="glfw" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="raylib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="raylib" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rce" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="rce" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="rce" RUN_TARGET_NAME="rce">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="update_mappings" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rce" TARGET_NAME="update_mappings" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.Run" />
+      <item itemvalue="CMake Application.rce" />
+      <item itemvalue="CMake Application.raylib" />
+      <item itemvalue="CMake Application.glfw" />
+      <item itemvalue="CMake Application.update_mappings" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b6346fe5-429b-4d68-8531-3b176415070c" name="Changes" comment="" />
+      <created>1759233431562</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759233431562</updated>
+      <workItem from="1759233432998" duration="3078000" />
+      <workItem from="1759254378042" duration="6192000" />
+      <workItem from="1759410624452" duration="19258000" />
+      <workItem from="1759433813340" duration="26792000" />
+      <workItem from="1759608299810" duration="279000" />
+      <workItem from="1759693725739" duration="12881000" />
+      <workItem from="1759948263338" duration="255000" />
+      <workItem from="1759948527064" duration="372000" />
+      <workItem from="1759948909673" duration="2228000" />
+      <workItem from="1759951547422" duration="1765000" />
+      <workItem from="1760124332881" duration="81000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
