@@ -1,7 +1,7 @@
 #include "example_scene.h"
 #include "rce/scenes/scene.h"
 #include "rce/object.h"
-#include "rce/components/all.h"
+#include "rce/object_components/all.h"
 #include <iostream>
 
 using namespace rce::examples;
@@ -11,9 +11,9 @@ void ExampleScene::onTick() {
         ToggleBorderlessWindowed();
     }
 
-    float deltaTime = IScene::getDeltaTime();
+    std::cout << GetFPS() << '\n';
 
-    std::cout << deltaTime * 100 << '\n';
+    float deltaTime = IScene::getDeltaTime();
 
     float addX = 0., addY = 0.;
 

@@ -1,4 +1,4 @@
-#include "rce/components/find_object_component.h"
+#include "rce/object_components/find_object_component.h"
 #include "rce/object.h"
 #include <string>
 

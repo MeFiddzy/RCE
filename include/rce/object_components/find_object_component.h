@@ -1,6 +1,6 @@
 #include <vector>
 #include <unordered_map>
-#include "rce/components/component.h"
+#include "rce/object_components/object_component.h"
 #include "string"
 
 namespace rce {

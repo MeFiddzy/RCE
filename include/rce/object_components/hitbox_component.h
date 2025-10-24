@@ -1,6 +1,6 @@
 #pragma once
 
-#include "component.h"
+#include "object_component.h"
 #include "functional"
 #include "memory"
 #include "raylib.h"

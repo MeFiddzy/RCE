@@ -3,12 +3,12 @@
 #include <vector>
 #include <memory>
 #include "raylib.h"
-#include "components/component.h"
+#include "object_components/object_component.h"
 #include <concepts>
 #include <exception>
 #include <iostream>
 
-namespace rce{
+namespace rce {
     class Object {
     public:
         [[nodiscard]] const Vector2& getPosition() const;
@@ -77,7 +77,7 @@ namespace rce{
 
         void setZOrder(uint32_t zOrder);
 
-        uint32_t getZOrder() const;
+        [[nodiscard]] uint32_t getZOrder() const;
 
         [[nodiscard]] float getDeltaScale() const;
 

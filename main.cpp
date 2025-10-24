@@ -4,21 +4,19 @@
 
 #include "rce/scenes/scene.h"
 #include "rce/scenes/examples/example_scene.h"
-#include "rce/scenes/util/dt_ratio_scene.h"
 
-#include "rce/components/all.h"
+#include "rce/object_components//all.h"
 #include "rce/object.h"
 
 int main() {
     // create window
     InitWindow(640, 480, "TestNeim");
-    SetTargetFPS(60);
+    SetTargetFPS(180);
 
     using namespace rce;
-    using namespace rce::examples;
 
     // load scene
-    IScene::loadScene<ExampleScene>();
+    IScene::loadScene<examples::ExampleScene>();
 
     /// game loop
     while (!WindowShouldClose()) {
@@ -33,7 +31,11 @@ int main() {
         // tick scenes
         scene->onTick();
 
-        // update object position and components
+        for (const auto &component : scene->getSceneComponents()) {
+            component->onSceneTick(scene);
+        }
+
+        // update object position and object_components
         Object::update();
         EndDrawing();
 

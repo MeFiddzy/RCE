@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../object.h"
-#include "component.h"
+#include "object_component.h"
 
 namespace rce {
     class ChildrenComponent : public IObjectComponent {

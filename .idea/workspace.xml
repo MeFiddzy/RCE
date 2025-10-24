@@ -24,6 +24,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6346fe5-429b-4d68-8531-3b176415070c" name="Changes" comment="">
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+>>>>>>> scene-components
       <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/examples/others/rlgl_standalone.c" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/examples/others/rlgl_standalone.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shaders/shaders_palette_switch.c" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shaders/shaders_palette_switch.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shapes/raygui.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/examples/shapes/raygui.h" afterDir="false" />
@@ -38,6 +42,15 @@
       <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/rcamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/rcamera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/rlgl.h" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/rlgl.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/_deps/raylib-src/src/rmodels.c" beforeDir="false" afterPath="$PROJECT_DIR$/build/_deps/raylib-src/src/rmodels.c" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/include/rce/scene_components/dt_ratio_scene_component.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/rce/scene_components/dt_ratio_scene_component.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/rce/scene_components/scene_component.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/systems/system.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/rce/scenes/examples/example_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/examples/example_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/rce/scenes/scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/rce/scenes/scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/rce/scenes/scene.h" afterDir="false" />
+>>>>>>> scene-components
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +97,11 @@
     &quot;Shell Script.RCE App.executor&quot;: &quot;Run&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;scene-components&quot;,
+>>>>>>> scene-components
     &quot;last_opened_file_path&quot;: &quot;D:/Info/raylib/RCE/build/Debug&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -98,6 +115,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Info\raylib\RCE\include\rce\scene_components" />
       <recent name="D:\Info\raylib\RCE\include\rce\scenes\examples" />
       <recent name="D:\Info\raylib\test\include\rce" />
       <recent name="D:\Info\raylib\test\include" />
@@ -162,6 +180,8 @@
       <workItem from="1759948909673" duration="2228000" />
       <workItem from="1759951547422" duration="1765000" />
       <workItem from="1760124332881" duration="81000" />
+      <workItem from="1760795548927" duration="132000" />
+      <workItem from="1761306346497" duration="323000" />
     </task>
     <servers />
   </component>
