@@ -1,6 +1,6 @@
 #include "example_scene.h"
 #include "rce/scenes/scene.h"
-#include "rce/object.h"
+#include "rce/objects/object.h"
 #include "rce/object_components/all.h"
 #include <iostream>
 

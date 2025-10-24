@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../object.h"
+#include "rce/objects/object.h"
 #include "object_component.h"
 
 namespace rce {

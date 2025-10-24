@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 #include "raylib.h"
-#include "object_components/object_component.h"
+#include "rce/object_components/object_component.h"
 #include <concepts>
 #include <exception>
 #include <iostream>

@@ -1,7 +1,7 @@
 #include "object.h"
 #include <memory>
 #include "raylib.h"
-#include "scenes/scene.h"
+#include "rce/scenes/scene.h"
 #include "rce/object_components/object_component.h"
 #include <algorithm>
 #include "rce/scenes/scene.h"

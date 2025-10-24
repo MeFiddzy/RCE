@@ -6,7 +6,7 @@
 #include "rce/scenes/examples/example_scene.h"
 
 #include "rce/object_components//all.h"
-#include "rce/object.h"
+#include "rce/objects/object.h"
 
 int main() {
     // create window

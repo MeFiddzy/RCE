@@ -67,7 +67,7 @@ namespace rce {
         static float getDeltaTime();
 
         template<typename SceneComponent>
-        [[nodiscard]] bool hasSceneComponent() {
+        [[nodiscard]] bool hasSystem() {
             static_assert(std::derived_from<SceneComponent, ISystem>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
 
             for (const auto &component : m_systems) {
@@ -79,7 +79,7 @@ namespace rce {
         }
 
         template<typename SceneComponent>
-        [[nodiscard]] std::weak_ptr<SceneComponent> getSceneComponent() const{
+        [[nodiscard]] std::weak_ptr<SceneComponent> getSystem() const{
             static_assert(std::derived_from<SceneComponent, ISystem>,
                           "Object::getComponent<Component> | Component doesn't derive from IObjectComponent.");
 
@@ -95,7 +95,7 @@ namespace rce {
             return std::weak_ptr<SceneComponent>{};
         }
 
-        void addSceneComponent(std::shared_ptr<ISystem> sceneComponent);
+        void addSystem(std::shared_ptr<ISystem> sceneComponent);
 
         auto getSystems() {
             std::vector<std::weak_ptr<ISystem>> systems;

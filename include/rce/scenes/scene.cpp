@@ -1,7 +1,7 @@
 #include <memory>
 
 #include "scene.h"
-#include "../object.h"
+#include "rce/objects/object.h"
 
 using namespace rce;
 
@@ -23,6 +23,6 @@ float IScene::getDeltaTime() {
     return s_deltaTime;
 }
 
-void IScene::addSceneComponent(std::shared_ptr<ISystem> sceneComponent) {
+void IScene::addSystem(std::shared_ptr<ISystem> sceneComponent) {
     m_systems.emplace_back(std::move(sceneComponent));
 }

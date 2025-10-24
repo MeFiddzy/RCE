@@ -1,5 +1,5 @@
 #include "hitbox_component.h"
-#include "../object.h"
+#include "rce/objects/object.h"
 #include "rce/scenes/scene.h"
 
 #define SHOW_HITBOXES true
