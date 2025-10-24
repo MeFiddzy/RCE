@@ -139,7 +139,8 @@ void Object::update() {
 
             auto component = weakComponent.lock();
 
-            component->onTick(*object);
+            if (component->isEnabled())
+                component->onTick(*object);
         }
 
         object->m_lastScale = object->m_scale;

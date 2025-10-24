@@ -5,9 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-option(DEBUG "Debug mode?" ON)
-
-
 include(FetchContent)
 
 FetchContent_Declare(
@@ -35,6 +32,8 @@ add_executable(rce
         include/rce/object_components/find_object_component.h
         include/rce/object_components/find_object_component.cpp
         include/rce/systems/system.h
+        include/rce/object_components/object_component.cpp
+        include/rce/systems/system.cpp
 )
 
 target_include_directories(rce PRIVATE include)

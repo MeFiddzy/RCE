@@ -9,6 +9,17 @@ using rce::HitboxComponent;
 rce::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(Object &)>> &onHit,
                                            HitboxComponent &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
 
+HitboxComponent::OnHitElem &
+rce::HitboxComponent::OnHitElem::addListener(const std::function<void(Object &)> &listener) {
+    m_onHit.emplace_back(listener);
+
+    return *this;
+}
+
+HitboxComponent &rce::HitboxComponent::OnHitElem::build() {
+    return m_hitbox;
+}
+
 void rce::HitboxComponent::onTick(rce::Object &parent) {
     Rectangle hitbox = {
             parent.getPosition().x + m_collisionBoxOffset.x,
@@ -76,6 +87,10 @@ rce::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset,
 
 Vector2 rce::HitboxComponent::getCollisionBoxSize() const {
     return m_collisionBoxSize;
+}
+
+HitboxComponent::OnHitElem rce::HitboxComponent::onHit() {
+    return OnHitElem(m_onHit, *this);
 }
 
 

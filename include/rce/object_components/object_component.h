@@ -1,6 +1,6 @@
 #pragma once
 
-#include "memory"
+#include <memory>
 
 namespace rce {
     class Object;
@@ -13,5 +13,13 @@ namespace rce {
 
         IObjectComponent() = default;
         virtual ~IObjectComponent() = default;
+
+        void enable();
+        void disable();
+        void toggle();
+        [[nodiscard]] bool isEnabled() const;
+
+    private:
+        bool m_enabled = true;
     };
 }

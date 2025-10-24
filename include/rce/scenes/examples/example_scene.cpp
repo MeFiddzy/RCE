@@ -11,8 +11,6 @@ void ExampleScene::onTick() {
         ToggleBorderlessWindowed();
     }
 
-    std::cout << GetFPS() << '\n';
-
     float deltaTime = IScene::getDeltaTime();
 
     float addX = 0., addY = 0.;
@@ -30,11 +28,9 @@ void ExampleScene::onTick() {
         addX += 6;
     }
 
-    Object *player = m_objects[0].get() ;
-
-    player->setPosition({
-        player->getPosition().x + (addX * (deltaTime * RATIO_DELTA_TIME)),
-        player->getPosition().y + (addY * (deltaTime * RATIO_DELTA_TIME))
+    m_objects[0]->setPosition({
+        m_objects[0]->getPosition().x + (addX * (deltaTime * RATIO_DELTA_TIME)),
+        m_objects[0]->getPosition().y + (addY * (deltaTime * RATIO_DELTA_TIME))
     });
 }
 

@@ -31,8 +31,12 @@ int main() {
         // tick scenes
         scene->onTick();
 
-        for (const auto &component : scene->getSceneComponents()) {
-            component->onSceneTick(scene);
+        for (const auto &weakComponent : scene->getSystems()) {
+            if (!weakComponent.expired()) {
+                auto component = weakComponent.lock();
+                if (component->isEnabled())
+                    component->onSceneTick(scene);
+            }
         }
 
         // update object position and object_components

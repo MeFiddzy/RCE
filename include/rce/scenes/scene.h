@@ -42,7 +42,8 @@ namespace rce {
                 s_loadedScene->onUnLoad();
 
                 for (const auto &component : s_loadedScene->m_systems) {
-                    component->onSceneUnLoad(s_loadedScene);
+                    if (component->isEnabled())
+                        component->onSceneUnLoad(s_loadedScene);
                 }
             }
 
@@ -50,7 +51,8 @@ namespace rce {
             s_loadedScene->onLoad(args...);
 
             for (const auto &component : s_loadedScene->m_systems) {
-                component->onSceneLoad(s_loadedScene);
+                if (component->isEnabled())
+                    component->onSceneLoad(s_loadedScene);
             }
         }
 
@@ -95,8 +97,14 @@ namespace rce {
 
         void addSceneComponent(std::shared_ptr<ISystem> sceneComponent);
 
-        auto getSceneComponents() {
-            return m_systems;
+        auto getSystems() {
+            std::vector<std::weak_ptr<ISystem>> systems;
+            systems.reserve(m_systems.size());
+
+            for (auto &comp : m_systems)
+                systems.push_back(comp);
+
+            return systems;
         }
 
     protected:

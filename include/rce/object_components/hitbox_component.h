@@ -12,15 +12,10 @@ namespace rce {
         public:
             explicit OnHitElem(std::vector<std::function<void(Object &)>> &onHit, HitboxComponent &hitbox);
 
-            __forceinline OnHitElem& addListener(const std::function<void(Object&)> &listener) {
-                m_onHit.emplace_back(listener);
+            OnHitElem& addListener(const std::function<void(Object&)> &listener);
 
-                return *this;
-            }
 
-            __forceinline HitboxComponent& build() {
-                return m_hitbox;
-            }
+            HitboxComponent& build();
 
             OnHitElem(const OnHitElem &&obj) = delete;
         private:
@@ -36,9 +31,7 @@ namespace rce {
 
         void onTick(rce::Object &self) override;
 
-        OnHitElem onHit() {
-            return OnHitElem(m_onHit, *this);
-        }
+        OnHitElem onHit();
 
         [[nodiscard]] Vector2 getCollisionBoxSize() const ;
 
