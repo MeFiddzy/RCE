@@ -33,9 +33,9 @@ int main() {
 
         for (const auto &weakComponent : scene->getSystems()) {
             if (!weakComponent.expired()) {
-                auto component = weakComponent.lock();
-                if (component->isEnabled())
-                    component->onSceneTick(scene);
+                auto system = weakComponent.lock();
+                if (system->isEnabled())
+                    system->onSceneTick(scene);
             }
         }
 

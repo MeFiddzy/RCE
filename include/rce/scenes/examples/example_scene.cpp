@@ -36,12 +36,15 @@ void ExampleScene::onTick() {
 }
 
 void ExampleScene::onLoad() {
-    auto mainObj = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{0, 0}, LoadTexture("resources/player.png")}));
-    auto mainChild = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{36, 36}, LoadTexture("resources/player.png")}));
-    auto collider = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{1000, 1000}}));
-    auto helloText = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{"Hello", 50, 10,{100, 100}}));
+    using Obj = std::shared_ptr<rce::AbstractObject>;
 
-    mainObj->setZOrder(0);
+    Obj mainObj = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{0, 0}, LoadTexture("resources/player.png")}));
+    Obj mainChild = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{36, 36}, LoadTexture("resources/player.png")}));
+    Obj collider = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{1000, 1000}}));
+    Obj helloText = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{"Hello", 50, 10,{100, 100}}));
+
+    mainObj->setZOrder(1);
+    helloText->setZOrder(0);
 
     mainObj->addComponent(std::make_shared<HitboxComponent>(
             HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](AbstractObject &other){
@@ -55,8 +58,7 @@ void ExampleScene::onLoad() {
     ));
 
     mainObj->addComponent(std::make_shared<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
-    mainObj->setZOrder(0);
-    mainChild->setZOrder(1);
+    mainChild->setZOrder(2);
 
     mainChild->addComponent(std::make_shared<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
 

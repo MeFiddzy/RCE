@@ -4,14 +4,18 @@
 #include <climits>
 #include <memory>
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 #include "raylib.h"
+#include "rce/util/property.h"
 
 namespace rce {
     class IObjectComponent;
 
     class AbstractObject {
     public:
+        virtual ~AbstractObject() = default;
+
         [[nodiscard]] const Vector2& getPosition() const;
         void setPosition(const Vector2& newPosition);
 
@@ -73,6 +77,18 @@ namespace rce {
 
         [[nodiscard]] const Color& getColor() const;
 
+        template<typename T>
+        void setProperty(const std::string& key, const T& value) {
+            m_properties[key] = dynamic_cast<PropertyBase*>(new Property<T>(value));
+        }
+
+        template<typename T>
+        Property<T>* getPropriety(const std::string& key) {
+            return dynamic_cast<Property<T>*>(m_properties.at(key));
+        }
+
+        void removeProperty(const std::string& key);
+
     protected:
         Vector2 m_position{};
         float m_rotation{};
@@ -87,5 +103,7 @@ namespace rce {
         std::vector<std::shared_ptr<IObjectComponent>> m_components{};
 
         static float s_lastFrameTime;
+
+        std::unordered_map<std::string, PropertyBase*> m_properties;
     };
 }

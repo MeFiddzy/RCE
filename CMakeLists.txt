@@ -38,6 +38,7 @@ add_executable(rce
         include/rce/objects/text_object.h
         include/rce/objects/abstract_object.h
         include/rce/objects/abstract_object.cpp
+        include/rce/util/Property.h
 )
 
 target_include_directories(rce PRIVATE include)

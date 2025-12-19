@@ -123,6 +123,10 @@ const Color& rce::AbstractObject::getColor() const {
     return m_color;
 }
 
+void rce::AbstractObject::removeProperty(const std::string &key) {
+    m_properties.erase(key);
+}
+
 void rce::AbstractObject::setRotation(float mRotation) {
     m_rotation = mRotation;
 }
