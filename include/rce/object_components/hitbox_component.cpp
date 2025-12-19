@@ -93,5 +93,9 @@ HitboxComponent::OnHitElem rce::HitboxComponent::onHit() {
     return OnHitElem(m_onHit, *this);
 }
 
+void rce::HitboxComponent::onTick(rce::AbstractObject *self) {
+    IObjectComponent::onTick(self);
+}
+
 
 

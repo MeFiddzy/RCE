@@ -1,15 +1,16 @@
 #pragma once
 
 #include <memory>
+#include "rce/objects/abstract_object.h"
 
 namespace rce {
     class Object;
 
     class IObjectComponent {
     public:
-        virtual void onTick(rce::Object &parent) {}
+        virtual void onTick(rce::AbstractObject* parent) {}
 
-        virtual void onAdd(rce::Object &parent) {}
+        virtual void onAdd(rce::AbstractObject* parent) {}
 
         IObjectComponent() = default;
         virtual ~IObjectComponent() = default;

@@ -29,7 +29,7 @@ namespace rce {
         explicit HitboxComponent(Object &parent);
         HitboxComponent() = default;
 
-        void onTick(rce::Object &self) override;
+        void onTick(rce::AbstractObject* self) override;
 
         OnHitElem onHit();
 

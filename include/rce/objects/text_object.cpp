@@ -2,30 +2,42 @@
 
 using namespace rce;
 
-Vector2 &TextObject::getPosition() {
-    return m_position;
-}
-
-float &TextObject::getFontSize() {
-    return m_fontSize;
-}
-
-Color &TextObject::getTint() {
+const Color &TextObject::getTint() const {
     return m_tint;
 }
 
-Font &TextObject::getFont() {
-    return m_font;
-}
-
-std::string TextObject::getText() {
-    return m_text;
-}
-
-float &TextObject::getSpacing() {
+float TextObject::getSpacing() const {
     return m_spacing;
 }
 
-uint32_t &TextObject::getZOrder() {
-    return m_zOrder;
+float TextObject::getFontSize() const {
+    return m_fontSize;
+}
+
+const Font &TextObject::getFont() const {
+    return m_font;
+}
+
+const std::string &TextObject::getText() const {
+    return m_text;
+}
+
+void TextObject::setTint(const Color &tint) {
+    m_tint = tint;
+}
+
+void TextObject::setFontSize(float fontSize) {
+    m_fontSize = fontSize;
+}
+
+void TextObject::setSpacing(float spacing) {
+    m_spacing = spacing;
+}
+
+void TextObject::setFont(const Font &font) {
+    m_font = font;
+}
+
+void TextObject::setText(const std::string &text) {
+    m_text = text;
 }

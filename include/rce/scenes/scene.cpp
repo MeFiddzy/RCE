@@ -23,6 +23,6 @@ float IScene::getDeltaTime() {
     return s_deltaTime;
 }
 
-void IScene::addSystem(std::shared_ptr<ISystem> sceneComponent) {
-    m_systems.emplace_back(std::move(sceneComponent));
+std::weak_ptr<ISystem> IScene::addSystem(std::shared_ptr<ISystem> sceneComponent) {
+    return m_systems.emplace_back(std::move(sceneComponent));
 }

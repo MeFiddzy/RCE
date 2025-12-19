@@ -9,6 +9,8 @@ namespace rce {
     public:
         void onSceneTick(std::weak_ptr<IScene> scene) override;
 
+        void addText(const TextObject &object);
+
     private:
         std::vector<std::shared_ptr<TextObject>> m_textObjects;
     };

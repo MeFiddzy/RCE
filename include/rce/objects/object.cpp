@@ -8,10 +8,7 @@
 #include <chrono>
 
 using namespace rce;
-
-const Vector2& Object::getPosition() const {
-    return m_position;
-}
+using namespace rce;
 
 const Texture2D& Object::getTexture() const {
     return m_texture;
@@ -27,10 +24,6 @@ float Object::getScale() const {
 
 const Color& Object::getColor() const {
     return m_color;
-}
-
-void Object::setPosition(const Vector2 &mCoords) {
-    m_position = mCoords;
 }
 
 void Object::setTexture(const Texture2D &mTexture) {
@@ -51,8 +44,10 @@ void Object::setTint(const Color &mColor) {
 
 Object::Object(const Vector2 &mCoords, const Texture2D &mTexture,
                float mRotation, float mScale, uint32_t zOrder, const Color &mColor)
-        : m_position(mCoords), m_texture(mTexture), m_rotation(mRotation),
-          m_scale(mScale), m_color(mColor), m_zOrder(zOrder) {
+        : m_texture(mTexture), m_rotation(mRotation),
+          m_scale(mScale), m_color(mColor) {
+    m_zOrder = zOrder;
+    m_position = mCoords;
 }
 
 Object::Object(const Object &obj) {
@@ -75,15 +70,7 @@ Object &Object::operator=(const Object &obj) {
     return *this;
 }
 
-auto Object::getComponents() {
-    std::vector<std::weak_ptr<IObjectComponent>> components;
-    components.reserve(m_components.size());
 
-    for (auto &comp : m_components)
-        components.push_back(comp);
-
-    return components;
-}
 
 float Object::s_lastFrameTime = 0;
 
@@ -149,12 +136,6 @@ void Object::update() {
     }
 }
 
-void rce::Object::addComponent(std::shared_ptr<IObjectComponent> component) {
-    component->onAdd(*this);
-
-    m_components.emplace_back(std::move(component));
-}
-
 float rce::Object::getDeltaScale() const {
     return m_scale - m_lastScale;
 }
@@ -170,11 +151,12 @@ Vector2 rce::Object::getDeltaPosition() const {
     );
 }
 
-void Object::setZOrder(uint32_t zOrder) {
-    m_zOrder = zOrder;
+void Object::draw() {
+    DrawTextureEx(
+            m_texture,
+            m_position,
+            m_rotation,
+            m_scale,
+            m_color
+    );
 }
-
-uint32_t Object::getZOrder() const {
-    return m_zOrder;
-}
-

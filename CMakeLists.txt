@@ -39,6 +39,8 @@ add_executable(rce
         include/rce/systems/text_system.cpp
         include/rce/objects/text_object.cpp
         include/rce/objects/text_object.h
+        include/rce/objects/abstract_object.h
+        include/rce/objects/abstract_object.cpp
 )
 
 target_include_directories(rce PRIVATE include)

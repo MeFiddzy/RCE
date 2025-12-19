@@ -9,6 +9,8 @@ namespace rce {
     public:
         virtual ~ISystem() = default;
 
+        ISystem() = default;
+
         virtual void onSceneTick(std::weak_ptr<IScene> scene) {}
 
         virtual void onSceneLoad (std::weak_ptr<IScene> scene) {}

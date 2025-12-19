@@ -95,7 +95,7 @@ namespace rce {
             return std::weak_ptr<SceneComponent>{};
         }
 
-        void addSystem(std::shared_ptr<ISystem> sceneComponent);
+        std::weak_ptr<ISystem> addSystem(std::shared_ptr<ISystem> sceneComponent);
 
         auto getSystems() {
             std::vector<std::weak_ptr<ISystem>> systems;
