@@ -1,16 +1,16 @@
 #include "hitbox_component.h"
-#include "../object.h"
+#include "rce/objects/sprite_object.h"
 #include "rce/scenes/scene.h"
 
 #define SHOW_HITBOXES true
 
 using rce::HitboxComponent;
 
-rce::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(Object &)>> &onHit,
+rce::HitboxComponent::OnHitElem::OnHitElem(std::vector<std::function<void(AbstractObject &)>> &onHit,
                                            HitboxComponent &hitbox) : m_onHit(onHit), m_hitbox(hitbox) {}
 
 HitboxComponent::OnHitElem &
-rce::HitboxComponent::OnHitElem::addListener(const std::function<void(Object &)> &listener) {
+rce::HitboxComponent::OnHitElem::addListener(const std::function<void(AbstractObject &)> &listener) {
     m_onHit.emplace_back(listener);
 
     return *this;
@@ -20,10 +20,10 @@ HitboxComponent &rce::HitboxComponent::OnHitElem::build() {
     return m_hitbox;
 }
 
-void rce::HitboxComponent::onTick(rce::Object &parent) {
+void rce::HitboxComponent::onTick(rce::AbstractObject* parent) {
     Rectangle hitbox = {
-            parent.getPosition().x + m_collisionBoxOffset.x,
-            parent.getPosition().y + m_collisionBoxOffset.y,
+            parent->getPosition().x + m_collisionBoxOffset.x,
+            parent->getPosition().y + m_collisionBoxOffset.y,
             m_collisionBoxSize.x,
             m_collisionBoxSize.y
     };
@@ -34,15 +34,15 @@ void rce::HitboxComponent::onTick(rce::Object &parent) {
     if (rce::IScene::getLoaded().expired())
         return;
 
-    std::vector<std::weak_ptr<Object>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
+    std::vector<std::weak_ptr<AbstractObject>> objectsInScene = rce::IScene::getLoaded().lock()->getLoadedObjects();
 
-    for (const std::weak_ptr<Object> &objectWeak : objectsInScene) {
+    for (const std::weak_ptr<AbstractObject> &objectWeak : objectsInScene) {
         if (objectWeak.expired())
             continue;
 
         auto object = objectWeak.lock();
 
-        if (object.get() == &parent || !(object->hasComponent<HitboxComponent>()))
+        if (static_cast<AbstractObject*>(object.get()) == parent || !(object->hasComponent<HitboxComponent>()))
             continue;
 
         std::weak_ptr<HitboxComponent> hitboxObjWeak = object->getComponent<HitboxComponent>();
@@ -74,7 +74,7 @@ void rce::HitboxComponent::onTick(rce::Object &parent) {
 
 rce::HitboxComponent::HitboxComponent(const Vector2 &collisionBoxOffset) : m_collisionBoxOffset(collisionBoxOffset) {}
 
-rce::HitboxComponent::HitboxComponent(rce::Object &parent) {
+rce::HitboxComponent::HitboxComponent(rce::SpriteObject &parent) {
     m_collisionBoxSize = {
             static_cast<float>(parent.getTexture().width),
             static_cast<float>(parent.getTexture().height)

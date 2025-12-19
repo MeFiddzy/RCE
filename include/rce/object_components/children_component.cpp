@@ -14,12 +14,12 @@ bool& rce::ChildrenComponent::followRotation() {
     return m_followRotation;
 }
 
-void rce::ChildrenComponent::onTick(rce::Object &parent) {
-    float deltaRotation = parent.getDeltaRotation();
-    float deltaScale = parent.getDeltaScale();
-    Vector2 deltaPosition = parent.getDeltaPosition();
+void rce::ChildrenComponent::onTick(rce::AbstractObject *parent) {
+    float deltaRotation = parent->getDeltaRotation();
+    float deltaScale = parent->getDeltaScale();
+    Vector2 deltaPosition = parent->getDeltaPosition();
 
-    for (const std::weak_ptr<Object> &childWeak : m_children) {
+    for (const std::weak_ptr<AbstractObject> &childWeak : m_children) {
         if (childWeak.expired())
             continue;
 
@@ -49,8 +49,8 @@ void rce::ChildrenComponent::onTick(rce::Object &parent) {
     }
 }
 
-ChildrenComponent& rce::ChildrenComponent::addChild(std::shared_ptr<Object> &child) {
-    m_children.push_back(std::weak_ptr<Object>(child));
+ChildrenComponent& rce::ChildrenComponent::addChild(std::shared_ptr<AbstractObject> &child) {
+    m_children.push_back(std::weak_ptr<AbstractObject>(child));
 
     return *this;
 }

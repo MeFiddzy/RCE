@@ -14,11 +14,11 @@
 #define RATIO_DELTA_TIME 62.0569f
 
 namespace rce {
-    class Object;
+    class SpriteObject;
 
     class IScene {
     public:
-        friend class Object;
+        friend class AbstractObject;
 
         virtual ~IScene() = default;
 
@@ -32,7 +32,7 @@ namespace rce {
 
         virtual void onUnLoad() {}
 
-        std::vector<std::weak_ptr<Object>> getLoadedObjects();
+        std::vector<std::weak_ptr<AbstractObject>> getLoadedObjects();
 
         template<typename Scene, typename ...Args>
         static void loadScene(Args ...args) {
@@ -67,7 +67,7 @@ namespace rce {
         static float getDeltaTime();
 
         template<typename SceneComponent>
-        [[nodiscard]] bool hasSceneComponent() {
+        [[nodiscard]] bool hasSystem() {
             static_assert(std::derived_from<SceneComponent, ISystem>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
 
             for (const auto &component : m_systems) {
@@ -79,7 +79,7 @@ namespace rce {
         }
 
         template<typename SceneComponent>
-        [[nodiscard]] std::weak_ptr<SceneComponent> getSceneComponent() const{
+        [[nodiscard]] std::weak_ptr<SceneComponent> getSystem() const{
             static_assert(std::derived_from<SceneComponent, ISystem>,
                           "Object::getComponent<Component> | Component doesn't derive from IObjectComponent.");
 
@@ -95,7 +95,7 @@ namespace rce {
             return std::weak_ptr<SceneComponent>{};
         }
 
-        void addSceneComponent(std::shared_ptr<ISystem> sceneComponent);
+        std::weak_ptr<ISystem> addSystem(std::shared_ptr<ISystem> sceneComponent);
 
         auto getSystems() {
             std::vector<std::weak_ptr<ISystem>> systems;
@@ -108,7 +108,7 @@ namespace rce {
         }
 
     protected:
-        std::vector<std::shared_ptr<Object>> m_objects;
+        std::vector<std::shared_ptr<AbstractObject>> m_objects;
 
         static std::shared_ptr<IScene> s_loadedScene;
 

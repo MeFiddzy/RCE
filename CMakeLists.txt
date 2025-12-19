@@ -17,8 +17,8 @@ FetchContent_MakeAvailable(raylib)
 
 add_executable(rce
         main.cpp
-        include/rce/object.cpp
-        include/rce/object.h
+        include/rce/objects/sprite_object.cpp
+        include/rce/objects/sprite_object.h
         include/rce/object_components/object_component.h
         include/rce/object_components/hitbox_component.cpp
         include/rce/object_components/hitbox_component.h
@@ -34,14 +34,12 @@ add_executable(rce
         include/rce/systems/system.h
         include/rce/object_components/object_component.cpp
         include/rce/systems/system.cpp
+        include/rce/objects/text_object.cpp
+        include/rce/objects/text_object.h
+        include/rce/objects/abstract_object.h
+        include/rce/objects/abstract_object.cpp
 )
 
 target_include_directories(rce PRIVATE include)
 
 target_link_libraries(rce PRIVATE raylib)
-
-if (DEBUG)
-    set_target_properties(rce PROPERTIES WIN32_EXECUTABLE FALSE)
-else()
-    set_target_properties(rce PROPERTIES WIN32_EXECUTABLE TRUE)
-endif()
