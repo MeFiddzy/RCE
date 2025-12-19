@@ -2,16 +2,8 @@
 
 using namespace rce;
 
-const Color &TextObject::getTint() const {
-    return m_tint;
-}
-
 float TextObject::getSpacing() const {
     return m_spacing;
-}
-
-float TextObject::getFontSize() const {
-    return m_fontSize;
 }
 
 const Font &TextObject::getFont() const {
@@ -20,14 +12,6 @@ const Font &TextObject::getFont() const {
 
 const std::string &TextObject::getText() const {
     return m_text;
-}
-
-void TextObject::setTint(const Color &tint) {
-    m_tint = tint;
-}
-
-void TextObject::setFontSize(float fontSize) {
-    m_fontSize = fontSize;
 }
 
 void TextObject::setSpacing(float spacing) {
@@ -40,4 +24,25 @@ void TextObject::setFont(const Font &font) {
 
 void TextObject::setText(const std::string &text) {
     m_text = text;
+}
+
+void TextObject::draw() {
+    DrawTextPro(
+            m_font,
+            m_text.data(),
+            m_position,
+            m_origin,
+            m_rotation,
+            m_scale,
+            m_spacing,
+            m_color
+    );
+}
+
+const Vector2 &TextObject::getOrigin() const {
+    return m_origin;
+}
+
+void TextObject::setOrigin(const Vector2 &origin) {
+    m_origin = origin;
 }

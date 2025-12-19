@@ -1,7 +1,7 @@
 #include <memory>
 
 #include "scene.h"
-#include "rce/objects/object.h"
+#include "rce/objects/sprite_object.h"
 
 using namespace rce;
 
@@ -9,8 +9,8 @@ std::shared_ptr<IScene> IScene::s_loadedScene = nullptr;
 
 float IScene::s_deltaTime = 0;
 
-std::vector<std::weak_ptr<Object>> IScene::getLoadedObjects() {
-    std::vector<std::weak_ptr<Object>> objectsCopy;
+std::vector<std::weak_ptr<AbstractObject>> IScene::getLoadedObjects() {
+    std::vector<std::weak_ptr<AbstractObject>> objectsCopy;
 
     for (const auto &object : m_objects) {
         objectsCopy.emplace_back(object);

@@ -4,7 +4,7 @@
 #include "rce/objects/abstract_object.h"
 
 namespace rce {
-    class Object;
+    class SpriteObject;
 
     class IObjectComponent {
     public:

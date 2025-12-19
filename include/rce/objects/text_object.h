@@ -10,27 +10,28 @@
 namespace rce {
     class TextObject: public AbstractObject{
     public:
-        TextObject(float fontSize, float spacing, Color tint, Vector2 position, Font font, std::string text):
-            m_fontSize(fontSize), m_spacing(spacing), m_tint(tint), m_font(font), m_text(std::move(text)) {
+        TextObject(std::string text, float fontSize, float spacing, Vector2 position, Font font = GetFontDefault(), Color tint = BLACK, Vector2 origin = {0, 0}):
+             m_spacing(spacing), m_font(font), m_text(std::move(text)), m_origin(origin) {
             m_position = position;
+            m_scale = fontSize;
+            m_color = tint;
         }
 
-        [[nodiscard]] const Color& getTint() const;
-        [[nodiscard]] float getFontSize() const;
         [[nodiscard]] float getSpacing() const;
         [[nodiscard]] const Font& getFont() const;
         [[nodiscard]] const std::string& getText() const;
+        [[nodiscard]] const Vector2& getOrigin() const;
 
-        void setTint(const Color& tint);
-        void setFontSize(float fontSize);
         void setSpacing(float spacing);
         void setFont(const Font& font);
         void setText(const std::string& text);
+        void setOrigin(const Vector2& origin);
+
+        void draw() override;
 
     private:
-        float m_fontSize;
         float m_spacing;
-        Color m_tint;
+        Vector2 m_origin;
         Font m_font;
         std::string m_text;
     };

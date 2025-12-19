@@ -10,9 +10,9 @@ namespace rce {
     public:
         class OnHitElem {
         public:
-            explicit OnHitElem(std::vector<std::function<void(Object &)>> &onHit, HitboxComponent &hitbox);
+            explicit OnHitElem(std::vector<std::function<void(AbstractObject &)>> &onHit, HitboxComponent &hitbox);
 
-            OnHitElem& addListener(const std::function<void(Object&)> &listener);
+            OnHitElem& addListener(const std::function<void(AbstractObject&)> &listener);
 
 
             HitboxComponent& build();
@@ -20,13 +20,13 @@ namespace rce {
             OnHitElem(const OnHitElem &&obj) = delete;
         private:
             HitboxComponent &m_hitbox;
-            std::vector<std::function<void(Object &)>> &m_onHit;
+            std::vector<std::function<void(AbstractObject &)>> &m_onHit;
         };
 
     public:
         explicit HitboxComponent(const Vector2 &collisionBoxOffset, const Vector2 &collisionBoxSize);
         explicit HitboxComponent(const Vector2 &collisionBoxOffset);
-        explicit HitboxComponent(Object &parent);
+        explicit HitboxComponent(SpriteObject &parent);
         HitboxComponent() = default;
 
         void onTick(rce::AbstractObject* self) override;
@@ -36,8 +36,8 @@ namespace rce {
         [[nodiscard]] Vector2 getCollisionBoxSize() const ;
 
     private:
-        Vector2 m_collisionBoxSize;
-        Vector2 m_collisionBoxOffset;
-        std::vector<std::function<void(Object&)>> m_onHit;
+        Vector2 m_collisionBoxSize{};
+        Vector2 m_collisionBoxOffset{};
+        std::vector<std::function<void(AbstractObject&)>> m_onHit;
     };
 }

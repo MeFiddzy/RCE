@@ -14,11 +14,11 @@
 #define RATIO_DELTA_TIME 62.0569f
 
 namespace rce {
-    class Object;
+    class SpriteObject;
 
     class IScene {
     public:
-        friend class Object;
+        friend class AbstractObject;
 
         virtual ~IScene() = default;
 
@@ -32,7 +32,7 @@ namespace rce {
 
         virtual void onUnLoad() {}
 
-        std::vector<std::weak_ptr<Object>> getLoadedObjects();
+        std::vector<std::weak_ptr<AbstractObject>> getLoadedObjects();
 
         template<typename Scene, typename ...Args>
         static void loadScene(Args ...args) {
@@ -108,7 +108,7 @@ namespace rce {
         }
 
     protected:
-        std::vector<std::shared_ptr<Object>> m_objects;
+        std::vector<std::shared_ptr<AbstractObject>> m_objects;
 
         static std::shared_ptr<IScene> s_loadedScene;
 

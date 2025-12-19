@@ -17,8 +17,8 @@ FetchContent_MakeAvailable(raylib)
 
 add_executable(rce
         main.cpp
-        include/rce/objects/object.cpp
-        include/rce/objects/object.h
+        include/rce/objects/sprite_object.cpp
+        include/rce/objects/sprite_object.h
         include/rce/object_components/object_component.h
         include/rce/object_components/hitbox_component.cpp
         include/rce/object_components/hitbox_component.h
@@ -34,9 +34,6 @@ add_executable(rce
         include/rce/systems/system.h
         include/rce/object_components/object_component.cpp
         include/rce/systems/system.cpp
-        include/rce/systems/text_system.h
-        include/rce/systems/text_system.cpp
-        include/rce/systems/text_system.cpp
         include/rce/objects/text_object.cpp
         include/rce/objects/text_object.h
         include/rce/objects/abstract_object.h

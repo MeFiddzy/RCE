@@ -1,8 +1,8 @@
 #include "example_scene.h"
 #include "rce/scenes/scene.h"
-#include "rce/objects/object.h"
+#include "rce/objects/sprite_object.h"
 #include "rce/object_components/all.h"
-#include "rce/systems/text_system.h"
+#include "rce/objects/text_object.h"
 #include <iostream>
 
 using namespace rce::examples;
@@ -36,22 +36,15 @@ void ExampleScene::onTick() {
 }
 
 void ExampleScene::onLoad() {
-    auto textSystemWeak = this->addSystem(std::make_shared<TextSystem>(TextSystem()));
+    auto mainObj = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{0, 0}, LoadTexture("resources/player.png")}));
+    auto mainChild = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{36, 36}, LoadTexture("resources/player.png")}));
+    auto collider = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{1000, 1000}}));
+    auto helloText = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{"Hello", 50, 10,{100, 100}}));
 
-    if (!textSystemWeak.expired()) {
-        auto textSystem = std::dynamic_pointer_cast<TextSystem>(textSystemWeak.lock());
+    mainObj->setZOrder(0);
 
-        textSystem->addText(TextObject(120, 1, BLACK, {100, 100}, GetFontDefault(), "Hello :)"));
-    }
-
-    m_objects.push_back(std::make_shared<Object>(Object{{0, 0},LoadTexture("resources/player.png")}));
-    m_objects.push_back(std::make_shared<Object>(Object{{36, 36},LoadTexture("resources/player.png")}));
-    m_objects.push_back(std::make_shared<Object>(Object{{1000, 1000}}));
-
-    m_objects[0]->setZOrder(0);
-
-    m_objects[0]->addComponent(std::make_shared<HitboxComponent>(
-            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](Object &other){
+    mainObj->addComponent(std::make_shared<HitboxComponent>(
+            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](AbstractObject &other){
                 if (!other.hasComponent<FindObjectIDComponent>())
                     return;
 
@@ -61,12 +54,12 @@ void ExampleScene::onLoad() {
             }).build()
     ));
 
-    m_objects[0]->addComponent(std::make_shared<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
-    m_objects[0]->setZOrder(0);
-    m_objects[1]->setZOrder(1);
+    mainObj->addComponent(std::make_shared<ChildrenComponent>(ChildrenComponent{}.addChild(m_objects[1])));
+    mainObj->setZOrder(0);
+    mainChild->setZOrder(1);
 
-    m_objects[1]->addComponent(std::make_shared<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
+    mainChild->addComponent(std::make_shared<HitboxComponent>(HitboxComponent({25, 28 }, {453, 445})));
 
-    m_objects[2]->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{{0, 0}, {10, 10}}));
-    m_objects[2]->addComponent(std::make_shared<FindObjectIDComponent>(FindObjectIDComponent{"Test"}));
+    collider->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{{0, 0}, {10, 10}}));
+    collider->addComponent(std::make_shared<FindObjectIDComponent>(FindObjectIDComponent{"Test"}));
 }

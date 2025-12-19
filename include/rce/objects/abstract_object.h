@@ -3,10 +3,13 @@
 #include <cstdint>
 #include <climits>
 #include <memory>
+#include <iostream>
+#include <vector>
 #include "raylib.h"
-#include "rce/object_components/all.h"
 
 namespace rce {
+    class IObjectComponent;
+
     class AbstractObject {
     public:
         [[nodiscard]] const Vector2& getPosition() const;
@@ -48,11 +51,41 @@ namespace rce {
 
         std::weak_ptr<IObjectComponent> addComponent(std::shared_ptr<IObjectComponent> component);
 
-        [[nodiscard]] auto getComponents();
+        [[nodiscard]]std::vector<std::weak_ptr<IObjectComponent>> getComponents();
+
+        static void update();
+
+        [[nodiscard]] float getDeltaScale() const;
+
+        [[nodiscard]] float getDeltaRotation() const;
+
+        [[nodiscard]] Vector2 getDeltaPosition() const;
+
+        void setRotation(float mRotation);
+
+        void setScale(float mScale);
+
+        void setTint(const Color &mColor);
+
+        [[nodiscard]] float getRotation() const;
+
+        [[nodiscard]] float getScale() const;
+
+        [[nodiscard]] const Color& getColor() const;
 
     protected:
         Vector2 m_position{};
+        float m_rotation{};
+        float m_scale{};
+        Color m_color{};
         uint32_t m_zOrder{UINT_MAX};
-        std::vector<std::shared_ptr<IObjectComponent>> m_components;
+
+        Vector2 m_lastPosition{};
+        float m_lastRotation{};
+        float m_lastScale{};
+
+        std::vector<std::shared_ptr<IObjectComponent>> m_components{};
+
+        static float s_lastFrameTime;
     };
 }
