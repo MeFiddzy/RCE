@@ -4,23 +4,28 @@
 #include "functional"
 #include "memory"
 #include "raylib.h"
+#include "raymath.h"
 
 namespace rce {
     class HitboxComponent : public rce::IObjectComponent {
     public:
+        struct HitContact {
+            Vector2 normal, point;
+        };
+
         class OnHitElem {
         public:
-            explicit OnHitElem(std::vector<std::function<void(AbstractObject &)>> &onHit, HitboxComponent &hitbox);
+            explicit OnHitElem(std::vector<std::function<void(AbstractObject &, const HitContact&)>> &onHit, HitboxComponent &hitbox);
 
-            OnHitElem& addListener(const std::function<void(AbstractObject&)> &listener);
+            OnHitElem& addListener(const std::function<void(AbstractObject&, const HitContact&)> &listener);
 
 
-            HitboxComponent& build();
+            HitboxComponent& build() const;
 
             OnHitElem(const OnHitElem &&obj) = delete;
         private:
             HitboxComponent &m_hitbox;
-            std::vector<std::function<void(AbstractObject &)>> &m_onHit;
+            std::vector<std::function<void(AbstractObject &, const HitContact&)>> &m_onHit;
         };
 
     public:
@@ -36,8 +41,11 @@ namespace rce {
         [[nodiscard]] Vector2 getCollisionBoxSize() const ;
 
     private:
+
+        bool SweptAABB(const Vector2& start, const Vector2& end, const Rectangle& box, float radius, HitContact& contact);
+
         Vector2 m_collisionBoxSize{};
         Vector2 m_collisionBoxOffset{};
-        std::vector<std::function<void(AbstractObject&)>> m_onHit;
+        std::vector<std::function<void(AbstractObject&, const HitContact&)>> m_onHit;
     };
 }
