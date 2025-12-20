@@ -87,6 +87,8 @@ namespace rce {
             return dynamic_cast<Property<T>*>(m_properties.at(key));
         }
 
+        [[nodiscard]] bool hasProperty(const std::string& key) const;
+
         void removeProperty(const std::string& key);
 
     protected:

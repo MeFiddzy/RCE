@@ -123,6 +123,10 @@ const Color& rce::AbstractObject::getColor() const {
     return m_color;
 }
 
+bool rce::AbstractObject::hasProperty(const std::string &key) const {
+    return m_properties.contains(key);
+}
+
 void rce::AbstractObject::removeProperty(const std::string &key) {
     m_properties.erase(key);
 }

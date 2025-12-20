@@ -4,6 +4,7 @@
 #include "rce/object_components/all.h"
 #include "rce/objects/text_object.h"
 #include <iostream>
+#include "rce/util/tags.h"
 
 using namespace rce::examples;
 
@@ -33,15 +34,19 @@ void ExampleScene::onTick() {
         m_objects[0]->getPosition().x + (addX * (deltaTime * RATIO_DELTA_TIME)),
         m_objects[0]->getPosition().y + (addY * (deltaTime * RATIO_DELTA_TIME))
     });
+
+    // std::cout << Tag("Test").tagIn(m_objects[0].get());
 }
 
 void ExampleScene::onLoad() {
-    using Obj = std::shared_ptr<rce::AbstractObject>;
+    using Obj = std::shared_ptr<AbstractObject>;
 
     Obj mainObj = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{0, 0}, LoadTexture("resources/player.png")}));
     Obj mainChild = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{36, 36}, LoadTexture("resources/player.png")}));
     Obj collider = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{1000, 1000}}));
     Obj helloText = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{"Hello", 50, 10,{100, 100}}));
+
+    // Tag("Test").addTo(mainObj.get());
 
     mainObj->setZOrder(1);
     helloText->setZOrder(0);
