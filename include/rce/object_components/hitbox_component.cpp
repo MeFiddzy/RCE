@@ -54,7 +54,7 @@ void rce::HitboxComponent::onTick(rce::AbstractObject *parent) {
             hitboxBoxSize.y
         };
         if (CheckCollisionRecs(hitbox, curRect)) {
-            HitContact contact{};
+            HitContact contact{0, 0};
 
             const Vector2 aCenter = {hitbox.x + hitbox.width * 0.5f, hitbox.y + hitbox.height * 0.5f};
             const Vector2 bCenter = {curRect.x + curRect.width * 0.5f, curRect.y + curRect.height * 0.5f};
@@ -62,16 +62,19 @@ void rce::HitboxComponent::onTick(rce::AbstractObject *parent) {
             contact.point.x = Clamp(aCenter.x, curRect.x, curRect.x + curRect.width);
             contact.point.y = Clamp(aCenter.y, curRect.y, curRect.y + curRect.height);
 
-            Vector2 delta = {aCenter.x - bCenter.x, aCenter.y - bCenter.y};
+            if (aCenter.y < bCenter.y) {
+                contact.normal.y = 1;
+            }
+            else if (aCenter.y > bCenter.y) {
+                contact.normal.y = -1;
+            }
 
-            float overlapX = (hitbox.width / 2 + curRect.width / 2) - fabsf(aCenter.x - bCenter.x);
-            float overlapY = (hitbox.height / 2 + curRect.height / 2) - fabsf(aCenter.y - bCenter.y);
-
-            if (overlapX < overlapY)
-                contact.normal = {(aCenter.x < bCenter.x) ? -1.f : 1.f, 0.f}; // horizontal
-            else
-                contact.normal = {0.f, (aCenter.y < bCenter.y) ? -1.f : 1.f}; // vertical
-
+            if (aCenter.x < bCenter.x) {
+                contact.normal.x = 1;
+            }
+            else if (aCenter.x > bCenter.x) {
+                contact.normal.x = -1;
+            }
 
             for (const auto &listener: m_onHit)
                 listener(*object, contact);

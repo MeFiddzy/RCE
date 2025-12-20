@@ -19,25 +19,28 @@ void rce::examples::MiniPhysicsComponent::addVelocity(Vector2 velocity) {
     };
 }
 
-void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const HitboxComponent::HitContact& contactPoint ) {
+void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const HitboxComponent::HitContact& contact ) {
     if (BreakTheBlocksScene::getBounceableTag().tagIn(&other)) {
-        bounce(contactPoint);
-    }
-
-    if (other.hasComponent<MiniPhysicsComponent>()) {
-        auto otherComp = other.getComponent<MiniPhysicsComponent>().lock()->m_velocity;
-        m_velocity = {
-            m_velocity.x / 2 + otherComp.x / 3,
-            m_velocity.y + otherComp.y,
-        };
+        bounce(contact);
     }
 }
 
-void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitContact& contact)
-{
-    m_velocity = Vector2Reflect(m_velocity, contact.normal);
+void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitContact& contact) {
+    m_velocity = {
+        -contact.normal.x * 10,
+        -contact.normal.y * 10,
+    };
 
-    // std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
+    if (fabs(m_velocity.x) == fabs(m_velocity.y)) {
+        m_velocity.x /= 2;
+        m_velocity.y /= 2;
+    }
+
+    if (fabs(m_velocity.y) <= 3) {
+        m_velocity.y = 3;
+    }
+
+    std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
 }
 
 void rce::examples::MiniPhysicsComponent::cancelVelocity() {

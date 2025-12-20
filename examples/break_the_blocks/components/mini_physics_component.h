@@ -9,7 +9,7 @@ namespace rce::examples {
 
         void addVelocity(Vector2 velocity);
 
-        void hitPaddle(AbstractObject& parent, const HitboxComponent::HitContact& contactPoint);
+        void hitPaddle(AbstractObject& parent, const HitboxComponent::HitContact& contact);
 
         void bounce(const HitboxComponent::HitContact& contact);
 

@@ -33,11 +33,11 @@ void BreakTheBlocksScene::onTick() {
     }
 
     if (m_ball->getPosition().x < 0)
-        m_physicsBall->bounce(HitboxComponent::HitContact({1, 0}));
+        m_physicsBall->bounce(HitboxComponent::HitContact({-.5, 0}, {}));
     if (m_ball->getPosition().x > GetScreenWidth())
-        m_physicsBall->bounce(HitboxComponent::HitContact({-1, 0}));
+        m_physicsBall->bounce(HitboxComponent::HitContact({.5, 0}, {}));
     if (m_ball->getPosition().y < 0)
-        m_physicsBall->bounce(HitboxComponent::HitContact({0, 1}));
+        m_physicsBall->bounce(HitboxComponent::HitContact({0, -.5}, {}));
     if (m_ball->getPosition().y > GetScreenHeight()) {
         loadScene<YouLostScene>();
         //m_physicsBall->bounce(HitboxComponent::HitContact({0, -1}));
@@ -88,7 +88,7 @@ void BreakTheBlocksScene::onLoad() {
         {m_paddle->getWidth(), m_paddle->getHeight()}
     )));
 
-    m_physicsBall->addVelocity({4, 10});
+    m_physicsBall->addVelocity({0, 10});
 
     s_bounceableTag.addTo(std::dynamic_pointer_cast<AbstractObject>(m_paddle).get());
 }
