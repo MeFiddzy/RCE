@@ -1,22 +1,25 @@
-#include <iostream>
 #include <raylib.h>
 #include <memory>
 
 #include "rce/scenes/scene.h"
-#include "rce/scenes/examples/example_scene.h"
-
-#include "rce/object_components//all.h"
+#include "rce/scenes/test/test_scene.h"
+#include "scenes/break_the_blocks_scene.h"
+#include "rce/object_components/all.h"
 #include "rce/objects/sprite_object.h"
+
+namespace rce {
+    class IScene;
+}
 
 int main() {
     // create window
-    InitWindow(640, 480, "TestNeim");
+    InitWindow(800, 600, "Break The Blocks");
     SetTargetFPS(180);
 
     using namespace rce;
 
     // load scene
-    IScene::loadScene<examples::ExampleScene>();
+    IScene::loadScene<examples::BreakTheBlocksScene>();
 
     /// game loop
     while (!WindowShouldClose()) {

@@ -24,7 +24,7 @@ SpriteObject::SpriteObject(const Vector2 &mCoords, const Texture2D &mTexture,
     m_color = mColor;
 }
 
-SpriteObject::SpriteObject(const SpriteObject &obj) {
+SpriteObject::SpriteObject(const SpriteObject &obj)  : AbstractObject(obj) {
     m_rotation = obj.m_rotation;
     m_scale = obj.m_scale;
     m_color = obj.m_color;

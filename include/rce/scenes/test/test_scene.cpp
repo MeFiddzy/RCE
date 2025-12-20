@@ -1,4 +1,4 @@
-#include "example_scene.h"
+#include "test_scene.h"
 #include "rce/scenes/scene.h"
 #include "rce/objects/sprite_object.h"
 #include "rce/object_components/all.h"
@@ -8,7 +8,7 @@
 
 using namespace rce::examples;
 
-void ExampleScene::onTick() {
+void TestScene::onTick() {
     if (IsKeyPressed(KEY_F4)) {
         ToggleBorderlessWindowed();
     }
@@ -38,7 +38,7 @@ void ExampleScene::onTick() {
     // std::cout << Tag("Test").tagIn(m_objects[0].get());
 }
 
-void ExampleScene::onLoad() {
+void TestScene::onLoad() {
     using Obj = std::shared_ptr<AbstractObject>;
 
     Obj mainObj = m_objects.emplace_back(std::make_shared<SpriteObject>(SpriteObject{{0, 0}, LoadTexture("resources/player.png")}));

@@ -16,7 +16,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 add_executable(rce
-        main.cpp
         include/rce/objects/sprite_object.cpp
         include/rce/objects/sprite_object.h
         include/rce/object_components/object_component.h
@@ -24,8 +23,8 @@ add_executable(rce
         include/rce/object_components/hitbox_component.h
         include/rce/object_components/all.h
         include/rce/scenes/scene.h
-        include/rce/scenes/examples/example_scene.cpp
-        include/rce/scenes/examples/example_scene.h
+        include/rce/scenes/test/test_scene.cpp
+        include/rce/scenes/test/test_scene.h
         include/rce/scenes/scene.cpp
         include/rce/object_components/children_component.h
         include/rce/object_components/children_component.cpp
@@ -40,6 +39,11 @@ add_executable(rce
         include/rce/objects/abstract_object.cpp
         include/rce/util/Property.h
         include/rce/util/tags.h
+        examples/break_the_blocks/break_the_blocks.cpp
+        examples/break_the_blocks/scenes/break_the_blocks_scene.cpp
+        examples/break_the_blocks/scenes/break_the_blocks_scene.h
+        include/rce/objects/rectangle_object.cpp
+        include/rce/objects/rectangle_object.h
 )
 
 target_include_directories(rce PRIVATE include)

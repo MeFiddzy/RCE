@@ -1,14 +1,9 @@
 #pragma once
-
 #include "rce/scenes/scene.h"
 
 namespace rce::examples {
-    class ExampleScene : public IScene {
-    public:
+    class BreakTheBlocksScene : public IScene {
         void onTick() override;
-
         void onLoad() override;
-    private:
-
     };
 }
