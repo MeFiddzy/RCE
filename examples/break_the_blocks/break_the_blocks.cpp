@@ -1,10 +1,9 @@
 #include <raylib.h>
 #include <memory>
+#include <random>
 
 #include "rce/scenes/scene.h"
-#include "rce/scenes/test/test_scene.h"
 #include "scenes/break_the_blocks_scene.h"
-#include "rce/object_components/all.h"
 #include "rce/objects/sprite_object.h"
 
 namespace rce {
@@ -12,9 +11,11 @@ namespace rce {
 }
 
 int main() {
+
+
     // create window
     InitWindow(800, 600, "Break The Blocks");
-    SetTargetFPS(180);
+    SetTargetFPS(60);
 
     using namespace rce;
 
@@ -31,9 +32,6 @@ int main() {
         BeginDrawing();
         ClearBackground(scene->getBackgroundColor());
 
-        // tick scenes
-        scene->onTick();
-
         for (const auto &weakComponent : scene->getSystems()) {
             if (!weakComponent.expired()) {
                 auto system = weakComponent.lock();
@@ -44,6 +42,9 @@ int main() {
 
         // update object position and object_components
         SpriteObject::update();
+
+        // tick scenes
+        scene->onTick();
         EndDrawing();
 
     }

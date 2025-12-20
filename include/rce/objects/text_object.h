@@ -10,7 +10,7 @@
 namespace rce {
     class TextObject: public AbstractObject{
     public:
-        TextObject(std::string text, float fontSize, float spacing, Vector2 position, Font font = GetFontDefault(), Color tint = BLACK, Vector2 origin = {0, 0}):
+        TextObject(std::string text, float fontSize, float spacing, Vector2 position, Color tint = BLACK, Font font = GetFontDefault(), Vector2 origin = {0, 0}):
              m_spacing(spacing), m_font(font), m_text(std::move(text)), m_origin(origin) {
             m_position = position;
             m_scale = fontSize;

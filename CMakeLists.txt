@@ -44,6 +44,12 @@ add_executable(rce
         examples/break_the_blocks/scenes/break_the_blocks_scene.h
         include/rce/objects/rectangle_object.cpp
         include/rce/objects/rectangle_object.h
+        include/rce/objects/circle_object.cpp
+        include/rce/objects/circle_object.h
+        examples/break_the_blocks/components/mini_physics_component.cpp
+        examples/break_the_blocks/components/mini_physics_component.h
+        examples/break_the_blocks/scenes/you_lost_scene.h
+        examples/break_the_blocks/lib/util.h
 )
 
 target_include_directories(rce PRIVATE include)
