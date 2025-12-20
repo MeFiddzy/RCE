@@ -2,6 +2,7 @@
 
 #include "you_lost_scene.h"
 #include "../components/mini_physics_component.h"
+#include "../systems/gen_cubes_system.h"
 #include "rce/objects/circle_object.h"
 #include "rce/objects/rectangle_object.h"
 #include "rce/object_components/hitbox_component.h"
@@ -10,7 +11,7 @@
 using namespace rce::examples;
 
 inline constexpr float MOVEMENT_SPEED = 5.f;
-const rce::Tag BreakTheBlocksScene::s_paddleTag("BREAK_THE_BLOCKS:PADDLE");
+const rce::Tag BreakTheBlocksScene::s_bounceableTag("BREAK_THE_BLOCKS:BOUNCEABLE");
 
 void BreakTheBlocksScene::onTick() {
     if (IsKeyDown(KEY_LEFT)) {
@@ -38,6 +39,8 @@ void BreakTheBlocksScene::onTick() {
 
 void BreakTheBlocksScene::onLoad() {
     m_backgroundColor = Color(41, 21, 99);
+
+    addSystem(std::make_shared<GenCubesSystem>(6, 20));
 
     m_paddle = std::dynamic_pointer_cast<RectangleObject>(
         m_objects.emplace_back(std::make_shared<rce::RectangleObject>(RectangleObject(
@@ -70,12 +73,12 @@ void BreakTheBlocksScene::onLoad() {
         m_physicsBall->hitPaddle(other, contact);
     }).build()));
 
-    m_paddle->addComponent(std::make_shared<rce::HitboxComponent>(HitboxComponent(
+    m_paddle->addComponent(std::make_shared<HitboxComponent>(HitboxComponent(
         {0, 0},
         {m_paddle->getWidth(), m_paddle->getHeight()}
     )));
 
     m_physicsBall->addVelocity({2, 10});
 
-    s_paddleTag.addTo(std::dynamic_pointer_cast<AbstractObject>(m_paddle).get());
+    s_bounceableTag.addTo(std::dynamic_pointer_cast<AbstractObject>(m_paddle).get());
 }

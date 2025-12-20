@@ -2,7 +2,7 @@
 #include "raymath.h"
 #include "rce/objects/sprite_object.h"
 #include "rce/scenes/scene.h"
-#define SHOW_HITBOXES true
+#define SHOW_HITBOXES false
 using rce::HitboxComponent;
 
 rce::HitboxComponent::OnHitElem::OnHitElem(

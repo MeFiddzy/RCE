@@ -1,5 +1,7 @@
 #include "system.h"
 
+#include "rce/scenes/scene.h"
+
 using namespace rce;
 
 void ISystem::enable() {
@@ -16,4 +18,8 @@ void ISystem::toggle() {
 
 bool ISystem::isEnabled() const {
     return m_enabled;
+}
+
+std::vector<std::shared_ptr<AbstractObject>>* ISystem::getObjectsFromScene(IScene *scene) {
+    return &scene->m_objects;
 }

@@ -8,6 +8,6 @@ namespace rce::examples::util {
         std::mt19937 rngEngine(std::random_device{}());
         std::uniform_int_distribution rngColor(0, 255);
 
-        return Color(rngColor(rngEngine), rngColor(rngEngine), rngColor(rngEngine));
+        return Color(rngColor(rngEngine), rngColor(rngEngine), rngColor(rngEngine), 100);
     }
 }

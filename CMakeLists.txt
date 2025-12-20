@@ -50,6 +50,8 @@ add_executable(rce
         examples/break_the_blocks/components/mini_physics_component.h
         examples/break_the_blocks/scenes/you_lost_scene.h
         examples/break_the_blocks/lib/util.h
+        examples/break_the_blocks/systems/gen_cubes_system.cpp
+        examples/break_the_blocks/systems/gen_cubes_system.h
 )
 
 target_include_directories(rce PRIVATE include)

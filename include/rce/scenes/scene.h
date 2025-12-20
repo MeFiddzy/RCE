@@ -19,6 +19,7 @@ namespace rce {
     class IScene {
     public:
         friend class AbstractObject;
+        friend class ISystem;
 
         virtual ~IScene() = default;
 
@@ -60,14 +61,14 @@ namespace rce {
             return s_loadedScene;
         }
 
-        Color getBackgroundColor() {
+        [[nodiscard]] Color getBackgroundColor() const {
             return m_backgroundColor;
         }
 
         static float getDeltaTime();
 
         template<typename SceneComponent>
-        [[nodiscard]] bool hasSystem() {
+        [[nodiscard]] bool hasSystem() const {
             static_assert(std::derived_from<SceneComponent, ISystem>, "Object::hasComponent<Component> | Component doesn't derive from IObjectComponent.");
 
             for (const auto &component : m_systems) {
@@ -97,7 +98,7 @@ namespace rce {
 
         std::weak_ptr<ISystem> addSystem(std::shared_ptr<ISystem> sceneComponent);
 
-        auto getSystems() {
+        [[nodiscard]] auto getSystems() const {
             std::vector<std::weak_ptr<ISystem>> systems;
             systems.reserve(m_systems.size());
 

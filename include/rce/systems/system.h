@@ -1,8 +1,10 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 namespace rce {
+    class AbstractObject;
     class IScene;
 
     class ISystem {
@@ -21,6 +23,9 @@ namespace rce {
         void disable();
         void toggle();
         [[nodiscard]] bool isEnabled() const;
+
+    protected:
+        [[nodiscard]] static std::vector<std::shared_ptr<AbstractObject>>* getObjectsFromScene(IScene* scene);
     private:
         bool m_enabled = true;
     };

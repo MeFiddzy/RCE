@@ -14,8 +14,8 @@ namespace rce::examples {
         void onTick() override;
         void onLoad() override;
 
-    static const Tag& getPaddleTag() {
-        return s_paddleTag;
+    static const Tag& getBounceableTag() {
+        return s_bounceableTag;
     }
 
     private:
@@ -23,6 +23,6 @@ namespace rce::examples {
         std::shared_ptr<CircleObject> m_ball;
         std::shared_ptr<MiniPhysicsComponent> m_physicsBall;
 
-        const static Tag s_paddleTag;
+        const static Tag s_bounceableTag;
     };
 }

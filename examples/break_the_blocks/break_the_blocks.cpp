@@ -32,16 +32,16 @@ int main() {
         BeginDrawing();
         ClearBackground(scene->getBackgroundColor());
 
-        for (const auto &weakComponent : scene->getSystems()) {
-            if (!weakComponent.expired()) {
-                auto system = weakComponent.lock();
+        // update object position and object_components
+        SpriteObject::update();
+
+        for (const auto &weakSystem : scene->getSystems()) {
+            if (!weakSystem.expired()) {
+                auto system = weakSystem.lock();
                 if (system->isEnabled())
                     system->onSceneTick(scene);
             }
         }
-
-        // update object position and object_components
-        SpriteObject::update();
 
         // tick scenes
         scene->onTick();

@@ -20,7 +20,7 @@ void rce::examples::MiniPhysicsComponent::addVelocity(Vector2 velocity) {
 }
 
 void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& parent, const HitboxComponent::HitContact& contactPoint ) {
-    if (BreakTheBlocksScene::getPaddleTag().tagIn(&parent)) {
+    if (BreakTheBlocksScene::getBounceableTag().tagIn(&parent)) {
         bounce(contactPoint);
     }
 }
@@ -31,16 +31,6 @@ void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitConta
 
     std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
 }
-
-/* void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitContact& contactPoint) {
-    cancelVelocity();
-    addVelocity({
-        contactPoint.normal.x * BOUNCE_POWER,
-        contactPoint.normal.y * BOUNCE_POWER,
-    });
-
-    std::cout << contactPoint.normal.x << ", " << contactPoint.normal.y << std::endl;
-} */
 
 void rce::examples::MiniPhysicsComponent::cancelVelocity() {
     m_velocity = {0, 0};
