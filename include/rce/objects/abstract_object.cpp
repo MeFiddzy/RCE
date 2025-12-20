@@ -76,8 +76,6 @@ void rce::AbstractObject::update() {
 
         auto object = objectWeak.lock();
 
-        object->draw();
-
         auto components = object->getComponents();
 
         for (std::weak_ptr<IObjectComponent> &weakComponent : components) {
@@ -89,6 +87,8 @@ void rce::AbstractObject::update() {
             if (component->isEnabled())
                 component->onTick(dynamic_cast<AbstractObject*>(object.get()));
         }
+
+        object->draw();
 
         object->m_lastScale = object->m_scale;
         object->m_lastRotation = object->m_rotation;
@@ -108,6 +108,21 @@ Vector2 rce::AbstractObject::getDeltaPosition() const {
     return Vector2(
             m_position.x - m_lastPosition.x,
             m_position.y - m_lastPosition.y
+    );
+}
+
+float rce::AbstractObject::getLastScale() const {
+    return m_lastScale;
+}
+
+float rce::AbstractObject::getLastRotation() const {
+    return m_lastRotation;
+}
+
+Vector2 rce::AbstractObject::getLastPosition() const {
+    return Vector2(
+            m_lastPosition.x,
+            m_lastPosition.y
     );
 }
 

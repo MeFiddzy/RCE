@@ -65,6 +65,12 @@ namespace rce {
 
         [[nodiscard]] Vector2 getDeltaPosition() const;
 
+        [[nodiscard]] float getLastScale() const;
+
+        [[nodiscard]] float getLastRotation() const;
+
+        [[nodiscard]] Vector2 getLastPosition() const;
+
         void setRotation(float mRotation);
 
         void setScale(float mScale);

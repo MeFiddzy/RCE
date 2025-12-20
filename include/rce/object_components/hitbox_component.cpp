@@ -64,10 +64,14 @@ void rce::HitboxComponent::onTick(rce::AbstractObject *parent) {
 
             Vector2 delta = {aCenter.x - bCenter.x, aCenter.y - bCenter.y};
 
-            if (fabsf(delta.x) > fabsf(delta.y))
-                contact.normal = {(delta.x > 0) ? 1.0f : -1.0f, 0.0f};
+            float overlapX = (hitbox.width / 2 + curRect.width / 2) - fabsf(aCenter.x - bCenter.x);
+            float overlapY = (hitbox.height / 2 + curRect.height / 2) - fabsf(aCenter.y - bCenter.y);
+
+            if (overlapX < overlapY)
+                contact.normal = {(aCenter.x < bCenter.x) ? -1.f : 1.f, 0.f}; // horizontal
             else
-                contact.normal = {0.0f, (delta.y > 0) ? 1.0f : -1.0f};
+                contact.normal = {0.f, (aCenter.y < bCenter.y) ? -1.f : 1.f}; // vertical
+
 
             for (const auto &listener: m_onHit)
                 listener(*object, contact);

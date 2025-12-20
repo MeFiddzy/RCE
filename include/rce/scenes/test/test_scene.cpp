@@ -52,7 +52,7 @@ void TestScene::onLoad() {
     helloText->setZOrder(0);
 
     mainObj->addComponent(std::make_shared<HitboxComponent>(
-            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](AbstractObject &other){
+            HitboxComponent({25, 28 }, {453, 445}).onHit().addListener([&](AbstractObject &other, const HitboxComponent::HitContact&){
                 if (!other.hasComponent<FindObjectIDComponent>())
                     return;
 
