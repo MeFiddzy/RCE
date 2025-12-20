@@ -16,30 +16,30 @@ namespace rce::examples {
 
             auto you = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
                 "You",
-                200,
+                400,
                 10,
                 {
-                    220, 100
+                    450, 220
                 },
                 WHITE
             }));
 
             auto lost = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
                 "Lost",
-                200,
+                400,
                 10,
                 {
-                    200, 300
+                    450, 550
                 },
                 WHITE
             }));
 
             auto restartInfo = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
                 "Press [R] to Restart!",
-                20,
+                50,
                 10,
                 {
-                    215, 500
+                    500, 1000
                 },
                 WHITE
             }));

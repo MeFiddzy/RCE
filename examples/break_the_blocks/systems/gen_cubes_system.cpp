@@ -14,8 +14,7 @@ void GenCubesSystem::onSceneLoad(std::weak_ptr<IScene> scene) {
     std::vector<std::shared_ptr<AbstractObject>>* sceneObjects = getObjectsFromScene(scene.lock().get());
 
     auto randEngine = std::mt19937(std::random_device{}());
-    auto randDist = std::bernoulli_distribution{0.8};
-
+    auto randDist = std::bernoulli_distribution{.7};
     float y = 0;
     for (int i = 0; i < m_cubeNumberVertical; i++) {
         float x = 0;

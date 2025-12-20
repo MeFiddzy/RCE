@@ -14,7 +14,7 @@ int main() {
 
 
     // create window
-    InitWindow(800, 600, "Break The Blocks");
+    InitWindow(1600, 1200, "Break The Blocks");
     SetTargetFPS(60);
 
     using namespace rce;
@@ -34,8 +34,6 @@ int main() {
 
         // update object position and object_components
         SpriteObject::update();
-
-        std::cout << "FPS:" << GetFPS() << '\n';
 
         for (const auto &weakSystem : scene->getSystems()) {
             if (!weakSystem.expired()) {

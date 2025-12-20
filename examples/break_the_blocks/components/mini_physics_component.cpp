@@ -19,9 +19,17 @@ void rce::examples::MiniPhysicsComponent::addVelocity(Vector2 velocity) {
     };
 }
 
-void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& parent, const HitboxComponent::HitContact& contactPoint ) {
-    if (BreakTheBlocksScene::getBounceableTag().tagIn(&parent)) {
+void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const HitboxComponent::HitContact& contactPoint ) {
+    if (BreakTheBlocksScene::getBounceableTag().tagIn(&other)) {
         bounce(contactPoint);
+    }
+
+    if (other.hasComponent<MiniPhysicsComponent>()) {
+        auto otherComp = other.getComponent<MiniPhysicsComponent>().lock()->m_velocity;
+        m_velocity = {
+            m_velocity.x / 2 + otherComp.x / 3,
+            m_velocity.y + otherComp.y,
+        };
     }
 }
 

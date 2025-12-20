@@ -22,6 +22,7 @@ namespace rce::examples {
         std::shared_ptr<RectangleObject> m_paddle;
         std::shared_ptr<CircleObject> m_ball;
         std::shared_ptr<MiniPhysicsComponent> m_physicsBall;
+        std::shared_ptr<MiniPhysicsComponent> m_physicsPaddle;
 
         const static Tag s_bounceableTag;
     };
