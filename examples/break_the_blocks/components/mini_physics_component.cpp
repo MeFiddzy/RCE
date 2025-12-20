@@ -29,7 +29,7 @@ void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitConta
 {
     m_velocity = Vector2Reflect(m_velocity, contact.normal);
 
-    std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
+    // std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
 }
 
 void rce::examples::MiniPhysicsComponent::cancelVelocity() {

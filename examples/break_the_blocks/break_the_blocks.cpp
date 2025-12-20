@@ -35,6 +35,8 @@ int main() {
         // update object position and object_components
         SpriteObject::update();
 
+        std::cout << "FPS:" << GetFPS() << '\n';
+
         for (const auto &weakSystem : scene->getSystems()) {
             if (!weakSystem.expired()) {
                 auto system = weakSystem.lock();

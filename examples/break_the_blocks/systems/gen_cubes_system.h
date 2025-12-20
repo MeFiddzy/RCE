@@ -19,6 +19,6 @@ namespace rce::examples {
         int m_cubeNumberVertical;
         int m_cubeNumberHorizontal;
 
-        std::vector<std::shared_ptr<RectangleObject>> m_deleteAtEnd;
+        std::shared_ptr<RectangleObject> m_deleteAtEnd;
     };
 }

@@ -5,6 +5,12 @@
 namespace rce::examples {
     class YouLostScene : public IScene {
     public:
+        void onTick() override {
+            if (IsKeyDown(KEY_R)) {
+                loadScene<BreakTheBlocksScene>();
+            }
+        }
+
         void onLoad() override {
             m_backgroundColor = Color(41, 21, 99);
 

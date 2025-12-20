@@ -33,7 +33,7 @@ void GenCubesSystem::onSceneLoad(std::weak_ptr<IScene> scene) {
                 HitboxComponent{{0,0}, {m_cubeLength, m_cubeLength}}
                     .onHit()
                     .addListener([cube, this](AbstractObject&, const HitboxComponent::HitContact&) {
-                        m_deleteAtEnd.emplace_back(cube);
+                        m_deleteAtEnd = cube;
                     })
                     .build()
             ));
@@ -50,9 +50,9 @@ void GenCubesSystem::onSceneLoad(std::weak_ptr<IScene> scene) {
 void GenCubesSystem::onSceneTick(std::weak_ptr<IScene> scene) {
     std::vector<std::shared_ptr<AbstractObject>>* sceneObjects = getObjectsFromScene(scene.lock().get());
 
-    for (auto cube : m_deleteAtEnd) {
-        auto it = std::ranges::find(*sceneObjects, cube);
-        if (it != sceneObjects->end())
-            sceneObjects->erase(it);
-    }
+
+    auto it = std::ranges::find(*sceneObjects, m_deleteAtEnd);
+    if (it != sceneObjects->end())
+        sceneObjects->erase(it);
+
 }

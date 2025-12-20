@@ -40,7 +40,7 @@ void BreakTheBlocksScene::onTick() {
 void BreakTheBlocksScene::onLoad() {
     m_backgroundColor = Color(41, 21, 99);
 
-    addSystem(std::make_shared<GenCubesSystem>(6, 20));
+    addSystem(std::make_shared<GenCubesSystem>(6, 15));
 
     m_paddle = std::dynamic_pointer_cast<RectangleObject>(
         m_objects.emplace_back(std::make_shared<rce::RectangleObject>(RectangleObject(
