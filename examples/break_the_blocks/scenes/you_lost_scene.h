@@ -14,7 +14,7 @@ namespace rce::examples {
         void onLoad() override {
             m_backgroundColor = Color(41, 21, 99);
 
-            auto You = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
+            auto you = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
                 "You",
                 200,
                 10,
@@ -24,12 +24,22 @@ namespace rce::examples {
                 WHITE
             }));
 
-            auto Lost = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
+            auto lost = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
                 "Lost",
                 200,
                 10,
                 {
                     200, 300
+                },
+                WHITE
+            }));
+
+            auto restartInfo = m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
+                "Press [R] to Restart!",
+                20,
+                10,
+                {
+                    215, 500
                 },
                 WHITE
             }));

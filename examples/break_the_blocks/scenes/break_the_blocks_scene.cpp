@@ -14,6 +14,10 @@ inline constexpr float MOVEMENT_SPEED = 5.f;
 const rce::Tag BreakTheBlocksScene::s_bounceableTag("BREAK_THE_BLOCKS:BOUNCEABLE");
 
 void BreakTheBlocksScene::onTick() {
+    if (IsKeyPressed(KEY_R)) {
+        loadScene<BreakTheBlocksScene>();
+    }
+
     if (IsKeyDown(KEY_LEFT)) {
         m_paddle->setPosition({
             m_paddle->getPosition().x - MOVEMENT_SPEED * RATIO_DELTA_TIME * IScene::getDeltaTime(),
