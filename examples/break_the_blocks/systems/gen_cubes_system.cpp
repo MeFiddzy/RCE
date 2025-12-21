@@ -1,7 +1,7 @@
 #include "gen_cubes_system.h"
 #include "../lib/util.h"
 #include "../scenes/break_the_blocks_scene.h"
-#include "rce/objects/rectangle_object.h"
+#include "../../../include/rce/objects/shape/rectangle_object.h"
 #include "rce/object_components/hitbox_component.h"
 
 using namespace rce;
@@ -28,6 +28,8 @@ void GenCubesSystem::onSceneLoad(std::weak_ptr<IScene> scene) {
                 RectangleObject{{x, y}, {0,0}, 0.0f, util::randomColor(), m_cubeLength, m_cubeLength}
             );
 
+            cube->setZOrder(0);
+
             cube->addComponent(std::make_shared<HitboxComponent>(
                 HitboxComponent{{0,0}, {m_cubeLength, m_cubeLength}}
                     .onHit()
@@ -37,7 +39,7 @@ void GenCubesSystem::onSceneLoad(std::weak_ptr<IScene> scene) {
                     .build()
             ));
 
-            BreakTheBlocksScene::getBounceableTag().addTo(cube.get());
+            BreakTheBlocksScene::getCubeTag().addTo(cube.get());
 
             sceneObjects->emplace_back(cube);
             x += m_cubeLength;

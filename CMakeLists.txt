@@ -42,16 +42,25 @@ add_executable(rce
         examples/break_the_blocks/break_the_blocks.cpp
         examples/break_the_blocks/scenes/break_the_blocks_scene.cpp
         examples/break_the_blocks/scenes/break_the_blocks_scene.h
-        include/rce/objects/rectangle_object.cpp
-        include/rce/objects/rectangle_object.h
-        include/rce/objects/circle_object.cpp
-        include/rce/objects/circle_object.h
+        include/rce/objects/shape/rectangle_object.cpp
+        include/rce/objects/shape/rectangle_object.h
+        include/rce/objects/shape/circle_object.cpp
+        include/rce/objects/shape/circle_object.h
         examples/break_the_blocks/components/mini_physics_component.cpp
         examples/break_the_blocks/components/mini_physics_component.h
         examples/break_the_blocks/scenes/you_lost_scene.h
         examples/break_the_blocks/lib/util.h
         examples/break_the_blocks/systems/gen_cubes_system.cpp
         examples/break_the_blocks/systems/gen_cubes_system.h
+        include/rce/objects/interactive/interactive_object.h
+        include/rce/objects/interactive/buttons/rectangle_button.h
+        examples/break_the_blocks/scenes/start_menu_scene.h
+        include/rce/systems/interactive_objects_system.h
+        include/rce/systems/interactive_object_system.cpp
+        examples/break_the_blocks/scenes/start_menu_scene.cpp
+        include/rce/objects/interactive/switches/abstract_switch.h
+        include/rce/objects/interactive/buttons/abstract_button.h
+        include/rce/objects/interactive/switches/rectangle_switch.h
 )
 
 target_include_directories(rce PRIVATE include)

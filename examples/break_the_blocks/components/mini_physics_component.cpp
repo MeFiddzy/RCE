@@ -20,8 +20,22 @@ void rce::examples::MiniPhysicsComponent::addVelocity(Vector2 velocity) {
 }
 
 void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const HitboxComponent::HitContact& contact ) {
-    if (BreakTheBlocksScene::getBounceableTag().tagIn(&other)) {
+    if (BreakTheBlocksScene::getCubeTag().tagIn(&other)) {
+        m_combo++;
         bounce(contact);
+    }
+
+    if (BreakTheBlocksScene::getPaddleTag().tagIn(&other)) {
+        bounce(contact);
+
+        m_velocity = {
+            m_velocity.x + other.getComponent<MiniPhysicsComponent>().lock()->m_velocity.x / 2,
+            m_velocity.y,
+        };
+
+        m_maxCombo = std::max(m_maxCombo, m_combo);
+        //std::cout << "E";
+        m_combo = 0;
     }
 }
 
@@ -32,17 +46,21 @@ void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitConta
     };
 
     if (fabs(m_velocity.x) == fabs(m_velocity.y)) {
-        m_velocity.x /= 2;
-        m_velocity.y /= 2;
+        m_velocity.x /= 1.5f;
+        m_velocity.y /= 1.5f;
     }
 
-    if (fabs(m_velocity.y) <= 3) {
-        m_velocity.y = 3;
-    }
+    // if (fabs(m_velocity.y) <= 3) {
+    //     m_velocity.y = m_velocity.y >= 0 ? 3 : -3;
+    // }
 
-    std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
+    // std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
 }
 
 void rce::examples::MiniPhysicsComponent::cancelVelocity() {
     m_velocity = {0, 0};
+}
+
+Vector2 rce::examples::MiniPhysicsComponent::getVelocity() const {
+    return m_velocity;
 }

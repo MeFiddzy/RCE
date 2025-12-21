@@ -19,7 +19,7 @@ namespace rce::examples {
                 400,
                 10,
                 {
-                    450, 220
+                    260, 200
                 },
                 WHITE
             }));
@@ -29,7 +29,7 @@ namespace rce::examples {
                 400,
                 10,
                 {
-                    450, 550
+                    260, 530
                 },
                 WHITE
             }));
@@ -39,7 +39,7 @@ namespace rce::examples {
                 50,
                 10,
                 {
-                    500, 1000
+                    360, 1000
                 },
                 WHITE
             }));

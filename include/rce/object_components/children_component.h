@@ -6,12 +6,6 @@
 namespace rce {
     class ChildrenComponent : public IObjectComponent {
     public:
-
-        template <typename... Args,
-                typename = std::enable_if_t<(std::conjunction_v<std::is_same<Args, std::weak_ptr<SpriteObject>>...>)>>
-        explicit ChildrenComponent(Args ...children) {
-            ((m_children.push_back(children)), ...);
-        }
         ChildrenComponent() = default;
 
         bool& followRotation();

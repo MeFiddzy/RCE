@@ -1,12 +1,12 @@
 #pragma once
 #include "raylib.h"
-#include "rce/objects/rectangle_object.h"
+#include "../../../include/rce/objects/shape/rectangle_object.h"
 #include "rce/systems/system.h"
 
 namespace rce::examples {
     class GenCubesSystem : public ISystem {
     public:
-        GenCubesSystem(int cubeNrVer, int cubeNrHor) : m_cubeNumberHorizontal(cubeNrHor), m_cubeNumberVertical(cubeNrVer) {
+        GenCubesSystem(const int cubeNrVer, const int cubeNrHor) : m_cubeNumberHorizontal(cubeNrHor), m_cubeNumberVertical(cubeNrVer) {
             m_cubeLength = GetScreenWidth() / cubeNrHor;
         }
 

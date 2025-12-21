@@ -1,17 +1,21 @@
 #include "break_the_blocks_scene.h"
 
+#include <format>
+
 #include "you_lost_scene.h"
 #include "../components/mini_physics_component.h"
 #include "../systems/gen_cubes_system.h"
-#include "rce/objects/circle_object.h"
-#include "rce/objects/rectangle_object.h"
+#include "../../../include/rce/objects/shape/circle_object.h"
+#include "rce/objects/shape/rectangle_object.h"
 #include "rce/object_components/hitbox_component.h"
 #include "rce/util/tags.h"
 
 using namespace rce::examples;
 
 inline constexpr float MOVEMENT_SPEED = 7.f;
-const rce::Tag BreakTheBlocksScene::s_bounceableTag("BREAK_THE_BLOCKS:BOUNCEABLE");
+inline constexpr float VELOCITY_TO_ADD = 1.f;
+const rce::Tag BreakTheBlocksScene::s_cubeTag("BREAK_THE_BLOCKS:CUBE");
+const rce::Tag BreakTheBlocksScene::s_paddleTag("BREAK_THE_BLOCKS:PADDLE");
 
 void BreakTheBlocksScene::onTick() {
     if (IsKeyPressed(KEY_R)) {
@@ -33,15 +37,27 @@ void BreakTheBlocksScene::onTick() {
     }
 
     if (m_ball->getPosition().x < 0)
-        m_physicsBall->bounce(HitboxComponent::HitContact({-.5, 0}, {}));
+        m_physicsBall->bounce(HitboxComponent::HitContact({
+            -VELOCITY_TO_ADD,
+            (m_physicsBall->getVelocity().y < 0) ? VELOCITY_TO_ADD : -VELOCITY_TO_ADD
+        }, {}));
     if (m_ball->getPosition().x > GetScreenWidth())
-        m_physicsBall->bounce(HitboxComponent::HitContact({.5, 0}, {}));
+        m_physicsBall->bounce(HitboxComponent::HitContact({
+            VELOCITY_TO_ADD,
+            (m_physicsBall->getVelocity().y < 0) ? VELOCITY_TO_ADD : -VELOCITY_TO_ADD
+        }, {}));
     if (m_ball->getPosition().y < 0)
-        m_physicsBall->bounce(HitboxComponent::HitContact({0, -.5}, {}));
+        m_physicsBall->bounce(HitboxComponent::HitContact({
+            (m_physicsBall->getVelocity().x < 0) ? VELOCITY_TO_ADD : -VELOCITY_TO_ADD,
+            -VELOCITY_TO_ADD
+        }, {}));
     if (m_ball->getPosition().y > GetScreenHeight()) {
         loadScene<YouLostScene>();
         //m_physicsBall->bounce(HitboxComponent::HitContact({0, -1}));
     }
+
+    // m_comboText->setText(std::format("Combo: {}x", m_physicsBall->getCombo()));
+    // m_maxComboText->setText(std::format("Max Combo: {}x", m_physicsBall->getMaxCombo()));
 }
 
 void BreakTheBlocksScene::onLoad() {
@@ -51,7 +67,7 @@ void BreakTheBlocksScene::onLoad() {
 
     m_paddle = std::dynamic_pointer_cast<RectangleObject>(
         m_objects.emplace_back(std::make_shared<rce::RectangleObject>(RectangleObject(
-                {325, 1100},
+                {825, 1000},
                 {0, 0},
                 0.0,
                 RAYWHITE,
@@ -60,10 +76,30 @@ void BreakTheBlocksScene::onLoad() {
             )
         )));
 
+    // m_comboText = std::dynamic_pointer_cast<TextObject>(
+    //     m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
+    //         "Combo: 0x",
+    //         40,
+    //         10,
+    //         {10, 1100},
+    //         WHITE
+    //     }
+    // )));
+    //
+    // m_maxComboText = std::dynamic_pointer_cast<TextObject>(
+    //     m_objects.emplace_back(std::make_shared<TextObject>(TextObject{
+    //         "Max Combo: 0x",
+    //         40,
+    //         10,
+    //         {10, 1150},
+    //         WHITE
+    //     }
+    // )));
+
     m_ball = std::dynamic_pointer_cast<CircleObject>(
         m_objects.emplace_back(std::make_shared<rce::CircleObject>(
             CircleObject(
-                {400, 750},
+                {825, 750},
                 WHITE,
                 13
             )
@@ -90,5 +126,5 @@ void BreakTheBlocksScene::onLoad() {
 
     m_physicsBall->addVelocity({0, 10});
 
-    s_bounceableTag.addTo(std::dynamic_pointer_cast<AbstractObject>(m_paddle).get());
+    s_paddleTag.addTo(std::dynamic_pointer_cast<AbstractObject>(m_paddle).get());
 }

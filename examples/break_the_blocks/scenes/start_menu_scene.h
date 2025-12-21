@@ -1,8 +1,24 @@
-//
-// Created by paul on 12/21/2025.
-//
+#pragma once
+#include "../components/mini_physics_component.h"
+#include "rce/objects/text_object.h"
+#include "../../../include/rce/objects/interactive/buttons/rectangle_button.h"
+#include "rce/objects/interactive/switches/rectangle_switch.h"
+#include "rce/scenes/scene.h"
 
-#ifndef START_MENU_H
-#define START_MENU_H
+namespace rce::examples {
+    class StartMenuScene : public IScene {
+    public:
+        void onLoad() override;
 
-#endif //START_MENU_H
+        void onTick() override;
+
+    private:
+        std::shared_ptr<TextObject> m_breakoidText;
+        std::shared_ptr<RectangleButton> m_startGameButton;
+        std::shared_ptr<RectangleSwitch> m_slipperyModeSwitch;
+        std::shared_ptr<MiniPhysicsComponent> m_buttonPhysics;
+        std::shared_ptr<MiniPhysicsComponent> m_textPhysics;
+
+        constexpr static float s_velocityToAddY = 20;
+    };
+}

@@ -15,7 +15,18 @@ namespace rce::examples {
 
         void cancelVelocity();
 
+        [[nodiscard]] Vector2 getVelocity() const;
+
+        [[nodiscard]] int getCombo() const {
+            return m_combo;
+        }
+
+        [[nodiscard]] int getMaxCombo() const {
+            return m_maxCombo;
+        }
     private:
         Vector2 m_velocity{};
+        int m_maxCombo = 0;
+        int m_combo = 0;
     };
 }

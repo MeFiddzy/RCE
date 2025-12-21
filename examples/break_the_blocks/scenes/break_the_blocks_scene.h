@@ -1,6 +1,7 @@
 #pragma once
 #include "../components/mini_physics_component.h"
-#include "rce/objects/rectangle_object.h"
+#include "../../../include/rce/objects/shape/rectangle_object.h"
+#include "rce/objects/text_object.h"
 #include "rce/scenes/scene.h"
 #include "rce/util/tags.h"
 
@@ -11,12 +12,18 @@ namespace rce {
 namespace rce::examples {
     class BreakTheBlocksScene : public IScene {
     public:
+        explicit BreakTheBlocksScene(const bool slippery) : m_slippery(slippery) {}
+
         void onTick() override;
         void onLoad() override;
 
-    static const Tag& getBounceableTag() {
-        return s_bounceableTag;
-    }
+        static const Tag& getCubeTag() {
+            return s_cubeTag;
+        }
+
+        static const Tag& getPaddleTag() {
+            return s_paddleTag;
+        }
 
     private:
         std::shared_ptr<RectangleObject> m_paddle;
@@ -24,6 +31,12 @@ namespace rce::examples {
         std::shared_ptr<MiniPhysicsComponent> m_physicsBall;
         std::shared_ptr<MiniPhysicsComponent> m_physicsPaddle;
 
-        const static Tag s_bounceableTag;
+        bool m_slippery;
+
+        // std::shared_ptr<TextObject> m_comboText;
+        // std::shared_ptr<TextObject> m_maxComboText;
+
+        const static Tag s_cubeTag;
+        const static Tag s_paddleTag;
     };
 }

@@ -114,4 +114,6 @@ namespace rce {
 
         std::unordered_map<std::string, PropertyBase*> m_properties;
     };
+
+    using IObject = AbstractObject;
 }

@@ -1,26 +1,18 @@
 #include <raylib.h>
 #include <memory>
-#include <random>
 
 #include "rce/scenes/scene.h"
-#include "scenes/break_the_blocks_scene.h"
-#include "rce/objects/sprite_object.h"
-
-namespace rce {
-    class IScene;
-}
+#include "scenes/start_menu_scene.h"
 
 int main() {
-
-
     // create window
-    InitWindow(1600, 1200, "Break The Blocks");
+    InitWindow(1300, 1200, "Break The Blocks");
     SetTargetFPS(60);
 
     using namespace rce;
 
     // load scene
-    IScene::loadScene<examples::BreakTheBlocksScene>();
+    IScene::loadScene<examples::StartMenuScene>();
 
     /// game loop
     while (!WindowShouldClose()) {
@@ -33,7 +25,7 @@ int main() {
         ClearBackground(scene->getBackgroundColor());
 
         // update object position and object_components
-        SpriteObject::update();
+        AbstractObject::update();
 
         for (const auto &weakSystem : scene->getSystems()) {
             if (!weakSystem.expired()) {
