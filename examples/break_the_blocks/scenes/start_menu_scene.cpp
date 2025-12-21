@@ -7,14 +7,6 @@
 using namespace rce;
 using namespace rce::examples;
 
-void StartMenuScene::onTick() {
-    if (m_startGameButton->getPosition().y > GetScreenHeight() - 40) {
-        loadScene<BreakTheBlocksScene>(m_slipperyModeSwitch->getValue());
-    }
-
-    std::cout << GetMousePosition().x << " " << GetMousePosition().y << std::endl;
-}
-
 void StartMenuScene::onLoad() {
     m_backgroundColor = Color(41, 21, 99);
 
@@ -48,8 +40,7 @@ void StartMenuScene::onLoad() {
                 WHITE,
                 600, 100,
                 [&](const Vector2& mousePos, InteractiveObject* self) {
-                    m_buttonPhysics->addVelocity({0, s_velocityToAddY});
-                    m_textPhysics->addVelocity({0, s_velocityToAddY});
+                    loadScene<BreakTheBlocksScene>(m_slipperyModeSwitch->getValue());
                 }
             })
         )
@@ -77,12 +68,4 @@ void StartMenuScene::onLoad() {
 
     m_startGameButton->setZOrder(0);
     startGameText->setZOrder(1);
-
-    m_buttonPhysics = std::dynamic_pointer_cast<MiniPhysicsComponent>(
-        m_startGameButton->addComponent(std::make_shared<MiniPhysicsComponent>()).lock()
-    );
-
-    m_textPhysics = std::dynamic_pointer_cast<MiniPhysicsComponent>(
-        startGameText->addComponent(std::make_shared<MiniPhysicsComponent>()).lock()
-    );
 }

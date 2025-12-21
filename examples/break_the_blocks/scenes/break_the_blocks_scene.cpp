@@ -19,18 +19,20 @@ const rce::Tag BreakTheBlocksScene::s_paddleTag("BREAK_THE_BLOCKS:PADDLE");
 
 void BreakTheBlocksScene::onTick() {
     if (IsKeyPressed(KEY_R)) {
-        loadScene<BreakTheBlocksScene>();
+        loadScene<BreakTheBlocksScene>(m_slippery);
     }
 
-    m_physicsPaddle->cancelVelocity();
+    if (!m_slippery) {
+        m_physicsPaddle->cancelVelocity();
+    }
 
     if (IsKeyDown(KEY_LEFT)) {
-        m_physicsPaddle->addVelocity({
+        m_physicsPaddle->setVelocity({
             -MOVEMENT_SPEED,
             0
         });
     } else if (IsKeyDown(KEY_RIGHT)) {
-        m_physicsPaddle->addVelocity({
+        m_physicsPaddle->setVelocity({
             MOVEMENT_SPEED,
             0
         });
@@ -52,7 +54,7 @@ void BreakTheBlocksScene::onTick() {
             -VELOCITY_TO_ADD
         }, {}));
     if (m_ball->getPosition().y > GetScreenHeight()) {
-        loadScene<YouLostScene>();
+        loadScene<YouLostScene>(m_slippery);
         //m_physicsBall->bounce(HitboxComponent::HitContact({0, -1}));
     }
 

@@ -19,6 +19,10 @@ void rce::examples::MiniPhysicsComponent::addVelocity(Vector2 velocity) {
     };
 }
 
+void rce::examples::MiniPhysicsComponent::setVelocity(Vector2 velocity) {
+    m_velocity = velocity;
+}
+
 void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const HitboxComponent::HitContact& contact ) {
     if (BreakTheBlocksScene::getCubeTag().tagIn(&other)) {
         m_combo++;

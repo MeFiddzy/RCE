@@ -48,8 +48,8 @@ namespace rce {
                 }
             }
 
-            s_loadedScene = std::make_shared<Scene>();
-            s_loadedScene->onLoad(args...);
+            s_loadedScene = std::make_shared<Scene>(Scene(args...));
+            s_loadedScene->onLoad();
 
             for (const auto &component : s_loadedScene->m_systems) {
                 if (component->isEnabled())

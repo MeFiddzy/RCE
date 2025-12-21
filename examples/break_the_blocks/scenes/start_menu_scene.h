@@ -10,14 +10,10 @@ namespace rce::examples {
     public:
         void onLoad() override;
 
-        void onTick() override;
-
     private:
         std::shared_ptr<TextObject> m_breakoidText;
         std::shared_ptr<RectangleButton> m_startGameButton;
         std::shared_ptr<RectangleSwitch> m_slipperyModeSwitch;
-        std::shared_ptr<MiniPhysicsComponent> m_buttonPhysics;
-        std::shared_ptr<MiniPhysicsComponent> m_textPhysics;
 
         constexpr static float s_velocityToAddY = 20;
     };

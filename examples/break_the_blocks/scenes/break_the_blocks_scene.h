@@ -12,7 +12,7 @@ namespace rce {
 namespace rce::examples {
     class BreakTheBlocksScene : public IScene {
     public:
-        explicit BreakTheBlocksScene(const bool slippery) : m_slippery(slippery) {}
+        explicit BreakTheBlocksScene(bool slippery) : m_slippery(slippery) {}
 
         void onTick() override;
         void onLoad() override;

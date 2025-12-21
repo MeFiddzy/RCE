@@ -5,9 +5,11 @@
 namespace rce::examples {
     class YouLostScene : public IScene {
     public:
+        explicit YouLostScene(bool slippery) : m_slippery(slippery) {}
+
         void onTick() override {
             if (IsKeyDown(KEY_R)) {
-                loadScene<BreakTheBlocksScene>();
+                loadScene<BreakTheBlocksScene>(m_slippery);
             }
         }
 
@@ -44,5 +46,7 @@ namespace rce::examples {
                 WHITE
             }));
         }
+    private:
+        bool m_slippery;
     };
 }
