@@ -1,5 +1,5 @@
 #pragma once
-#include "abstract_object.h"
+#include "../abstract_object.h"
 
 namespace rce {
     class RectangleObject : public AbstractObject {

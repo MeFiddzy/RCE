@@ -1,4 +1,4 @@
-#include "rectangle_object.h"
+#include "../rectangle_object.h"
 #include "raylib.h"
 
 using namespace rce;
