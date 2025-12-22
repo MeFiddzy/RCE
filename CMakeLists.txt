@@ -61,6 +61,11 @@ add_executable(rce
         include/rce/objects/interactive/switches/abstract_switch.h
         include/rce/objects/interactive/buttons/abstract_button.h
         include/rce/objects/interactive/switches/rectangle_switch.h
+        examples/platformer/platformer.cpp
+        examples/platformer/scene/play_scene.h
+        examples/platformer/scene/play_scene.cpp
+        examples/platformer/components/physics_component.h
+        examples/platformer/components/physics_component.cpp
 )
 
 target_include_directories(rce PRIVATE include)
