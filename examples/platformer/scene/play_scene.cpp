@@ -10,13 +10,13 @@ static constexpr float JUMP_VELOCITY = -11.f;
 static constexpr float MOVEMENT_SPEED = 6.f;
 
 void PlayScene::onTick() {
-    if (IsKeyPressed(KEY_UP) && m_cubePhysics->isOnGround()) {
-        m_cubePhysics->addVelocity({0, JUMP_VELOCITY});
+    if (IsKeyDown(KEY_UP) && m_cubePhysics->isOnGround()) {
+        m_cubePhysics->setVelocity({m_cubePhysics->getVelocity().x, JUMP_VELOCITY});
     }
 
     m_cubePhysics->setVelocity({
         0,
-        m_cubePhysics->getVelocity().y,
+        m_cubePhysics->getVelocity().y
     });
 
     if (IsKeyDown(KEY_LEFT)) {
@@ -61,13 +61,13 @@ void PlayScene::onLoad() {
     );
 
     m_cube->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
-        {0., 41},
+        {0., 42.2f},
         {m_cube->getWidth(), m_cube->getHeight()},
     }.onHit().addListener([this](AbstractObject& other, const HitboxComponent::HitContact& hitContact) {
         m_cubePhysics->onHitboxTouch(other, hitContact);
     }).build()));
 
-    m_spikeHitboxForCube = std::dynamic_pointer_cast<HitboxComponent>(m_cube->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
+    m_actualCubeHitbox = std::dynamic_pointer_cast<HitboxComponent>(m_cube->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
         {0, 0},
         {m_cube->getWidth(), m_cube->getHeight()}
     })).lock());

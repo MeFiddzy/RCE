@@ -5,7 +5,7 @@
 #include "rce/scenes/scene.h"
 #include "scene/play_scene.h"
 
-int platformer() {
+int main2() {
     // create window
     InitWindow(1300, 1200, "Break The Blocks");
     SetTargetFPS(60);

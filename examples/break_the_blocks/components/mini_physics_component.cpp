@@ -45,9 +45,11 @@ void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const
 
 void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitContact& contact) {
     m_velocity = {
-        -contact.normal.x * 10,
-        -contact.normal.y * 10,
+        contact.normal.x * 10,
+        contact.normal.y * 10,
     };
+
+    std::cout << contact.normal.x << ", " << contact.normal.y << std::endl;
 
     if (fabs(m_velocity.x) == fabs(m_velocity.y)) {
         m_velocity.x /= 1.5f;

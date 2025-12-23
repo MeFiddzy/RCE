@@ -13,7 +13,7 @@ namespace rce::examples {
         std::shared_ptr<RectangleObject> m_cube;
         std::shared_ptr<RectangleObject> m_ground;
 
-        std::shared_ptr<HitboxComponent> m_spikeHitboxForCube;
+        std::shared_ptr<HitboxComponent> m_actualCubeHitbox;
 
         std::shared_ptr<PhysicsComponent> m_cubePhysics;
         std::shared_ptr<PhysicsComponent> m_groundPhysics;
