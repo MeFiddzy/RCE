@@ -5,9 +5,9 @@
 #include "rce/scenes/scene.h"
 #include "scene/play_scene.h"
 
-int main2() {
+int main() {
     // create window
-    InitWindow(1300, 1200, "Break The Blocks");
+    InitWindow(1300, 1200, "Platformer");
     SetTargetFPS(60);
 
     using namespace rce;
@@ -29,7 +29,7 @@ int main2() {
         AbstractObject::update();
 
         for (const auto &weakSystem : scene->getSystems()) {
-            if (!weakSystem.expired()) {
+                if (!weakSystem.expired()) {
                 auto system = weakSystem.lock();
                 if (system->isEnabled())
                     system->onSceneTick(scene);

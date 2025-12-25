@@ -1,5 +1,6 @@
 #pragma once
 #include "../components/physics_component.h"
+#include "../objects/orb_object.h"
 #include "rce/objects/shape/rectangle_object.h"
 #include "rce/scenes/scene.h"
 
@@ -13,9 +14,13 @@ namespace rce::examples {
         std::shared_ptr<RectangleObject> m_cube;
         std::shared_ptr<RectangleObject> m_ground;
 
-        std::shared_ptr<HitboxComponent> m_actualCubeHitbox;
+        std::shared_ptr<HitboxComponent> m_cubeHitbox;
 
         std::shared_ptr<PhysicsComponent> m_cubePhysics;
         std::shared_ptr<PhysicsComponent> m_groundPhysics;
+
+        std::vector<std::shared_ptr<OrbObject>> m_orbs;
+
+        static const float s_orbSize;
     };
 }

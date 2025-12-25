@@ -45,8 +45,8 @@ void rce::examples::MiniPhysicsComponent::hitPaddle(AbstractObject& other, const
 
 void rce::examples::MiniPhysicsComponent::bounce(const HitboxComponent::HitContact& contact) {
     m_velocity = {
-        contact.normal.x * 10,
-        contact.normal.y * 10,
+        -contact.normal.x * 10,
+        -contact.normal.y * 10,
     };
 
     std::cout << contact.normal.x << ", " << contact.normal.y << std::endl;

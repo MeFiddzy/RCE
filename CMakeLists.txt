@@ -66,6 +66,8 @@ add_executable(rce
         examples/platformer/scene/play_scene.cpp
         examples/platformer/components/physics_component.h
         examples/platformer/components/physics_component.cpp
+        examples/platformer/objects/orb_object.cpp
+        examples/platformer/objects/orb_object.h
 )
 
 target_include_directories(rce PRIVATE include)

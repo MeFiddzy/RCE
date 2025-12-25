@@ -20,7 +20,7 @@ namespace rce {
             OnHitElem& addListener(const std::function<void(AbstractObject&, const HitContact&)> &listener);
 
 
-            HitboxComponent& build() const;
+            [[nodiscard]] HitboxComponent& build() const;
 
             OnHitElem(const OnHitElem &&obj) = delete;
         private:
@@ -28,7 +28,6 @@ namespace rce {
             std::vector<std::function<void(AbstractObject &, const HitContact&)>> &m_onHit;
         };
 
-    public:
         explicit HitboxComponent(const Vector2 &collisionBoxOffset, const Vector2 &collisionBoxSize);
         explicit HitboxComponent(const Vector2 &collisionBoxOffset);
         explicit HitboxComponent(SpriteObject &parent);

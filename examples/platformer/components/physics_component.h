@@ -24,9 +24,11 @@ namespace rce::examples {
 
         void setVelocity(const Vector2 velocity) { m_velocity = velocity; }
 
+        void resetNormal() { m_normal = 0; }
+
         void addVelocity(const Vector2 velocity) { m_velocity = {m_velocity.x + velocity.x, m_velocity.y + velocity.y}; }
 
-        bool isOnGround() const { return m_onGround; }
+        [[nodiscard]] bool isOnGround() const { return m_onGround; }
 
         static const Tag& getGroundTag() { return s_groundTag; }
     private:
@@ -35,7 +37,8 @@ namespace rce::examples {
         float m_normal = 0.f; // OMFG I DONT KNOW PHYSICS :sob: :sob: :sob:
         bool m_onGround = false;
 
-        static const float s_gravity;
+        static const float s_gravitationalAcceleration;
+        static const float s_airResistance;
         static const Tag s_groundTag;
     };
 }

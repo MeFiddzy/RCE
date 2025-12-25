@@ -9,6 +9,8 @@ using namespace rce;
 static constexpr float JUMP_VELOCITY = -11.f;
 static constexpr float MOVEMENT_SPEED = 6.f;
 
+const float PlayScene::s_orbSize = 50.f;
+
 void PlayScene::onTick() {
     if (IsKeyDown(KEY_UP) && m_cubePhysics->isOnGround()) {
         m_cubePhysics->setVelocity({m_cubePhysics->getVelocity().x, JUMP_VELOCITY});
@@ -30,6 +32,55 @@ void PlayScene::onTick() {
 void PlayScene::onLoad() {
     m_backgroundColor = Color(39, 145, 184, 0);
 
+    m_orbs.emplace_back(
+        std::dynamic_pointer_cast<OrbObject>(
+            m_objects.emplace_back(
+                std::make_shared<OrbObject>(
+                    Vector2{700, 800},
+                    Vector2{0, 0},
+                    0.0f,
+                    RED,
+                    s_orbSize,
+                    s_orbSize,
+                    -27.0f
+                )
+            )
+        )
+    );
+
+    m_orbs.emplace_back(
+        std::dynamic_pointer_cast<OrbObject>(
+            m_objects.emplace_back(
+                std::make_shared<OrbObject>(
+                    Vector2{600, 800},
+                    Vector2{0, 0},
+                    0.0f,
+                    PINK,
+                    s_orbSize,
+                    s_orbSize,
+                    -20.0f
+                )
+            )
+        )
+    );
+
+    m_orbs.emplace_back(
+        std::dynamic_pointer_cast<OrbObject>(
+            m_objects.emplace_back(
+                std::make_shared<OrbObject>(
+                    Vector2{700, 600},
+                    Vector2{0, 0},
+                    0.0f,
+                    YELLOW,
+                    s_orbSize,
+                    s_orbSize,
+                    -23.0f
+                )
+            )
+        )
+    );
+
+
     m_cube = std::dynamic_pointer_cast<RectangleObject>(
         m_objects.emplace_back(std::make_shared<RectangleObject>(RectangleObject{
             {550, 800},
@@ -47,7 +98,7 @@ void PlayScene::onLoad() {
             {0, 0},
             0.0f,
             WHITE,
-            1300,
+            1000,
             20
         }))
     );
@@ -60,20 +111,15 @@ void PlayScene::onLoad() {
         m_ground->addComponent(std::make_shared<PhysicsComponent>(PhysicsComponent{false})).lock()
     );
 
-    m_cube->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
-        {0., 42.2f},
-        {m_cube->getWidth(), m_cube->getHeight()},
-    }.onHit().addListener([this](AbstractObject& other, const HitboxComponent::HitContact& hitContact) {
-        m_cubePhysics->onHitboxTouch(other, hitContact);
-    }).build()));
-
-    m_actualCubeHitbox = std::dynamic_pointer_cast<HitboxComponent>(m_cube->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
+    m_cubeHitbox = std::dynamic_pointer_cast<HitboxComponent>(m_cube->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
         {0, 0},
         {m_cube->getWidth(), m_cube->getHeight()}
-    })).lock());
+    }.onHit().addListener([this](AbstractObject& other, const HitboxComponent::HitContact& hitContact) {
+        m_cubePhysics->onHitboxTouch(other, hitContact);
+    }).build())).lock());
 
     m_ground->addComponent(std::make_shared<HitboxComponent>(HitboxComponent{
-        {0, 0},
+        {0, -42.2f},
         {m_ground->getWidth(), m_ground->getHeight()},
     }));
 

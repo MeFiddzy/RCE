@@ -63,17 +63,17 @@ void rce::HitboxComponent::onTick(rce::AbstractObject *parent) {
             contact.point.y = Clamp(aCenter.y, curRect.y, curRect.y + curRect.height);
 
             if (contact.point.y < bCenter.y) {
-                contact.normal.y = -1;
+                contact.normal.y = 1;
             }
             else if (contact.point.y > bCenter.y) {
-                contact.normal.y = 1;
+                contact.normal.y = -1;
             }
 
             if (contact.point.x < bCenter.x) {
-                contact.normal.x = 1;
+                contact.normal.x = -1;
             }
             else if (contact.point.x > bCenter.x) {
-                contact.normal.x = -1;
+                contact.normal.x = 1;
             }
 
             for (const auto &listener: m_onHit)
