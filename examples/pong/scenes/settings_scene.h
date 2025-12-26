@@ -154,7 +154,15 @@ namespace rce::examples {
                 300,
                 80,
                 [&](const Vector2& pos, InteractiveObject* self) {
-                    IScene::loadScene<PlayMenuScene>(m_settingsData);
+                    IScene::loadScene<PlayMenuScene>(SettingsData{
+                        splitBySpace(m_p1Size),
+                        splitBySpace(m_p2Size),
+                        splitBySpace(m_p1Movement),
+                        splitBySpace(m_p2Movement),
+                        m_p1InvertedSwitch->getValue(),
+                        m_p2InvertedSwitch->getValue(),
+                        std::stoi(m_winScore->getValue())
+                    });
                 }
             }));
             addObject(std::make_shared<TextObject>(TextObject{
@@ -168,6 +176,15 @@ namespace rce::examples {
     private:
         using Switch = std::shared_ptr<RectangleSwitch>;
         using TextBox = std::shared_ptr<RectangleTextBox>;
+
+        static Vector2 splitBySpace(TextBox obj) {
+            const int indexFirst0 = obj->getValue().find_first_of(" ");
+
+            return {
+                std::stof(obj->getValue().substr(0, indexFirst0)),
+                std::stof(obj->getValue().substr(indexFirst0 + 1))
+            };
+        }
 
         SettingsData m_settingsData;
 

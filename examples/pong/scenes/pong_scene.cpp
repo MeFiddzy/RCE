@@ -18,6 +18,10 @@ const rce::Tag PongScene::s_cubeTag("PONG:CUBE");
 const rce::Tag PongScene::s_paddleTag("PONG:PADDLE");
 
 void rce::examples::PongScene::onTick() {
+    if (IsKeyPressed(KEY_SLASH)) {
+        loadScene<PongScene>(m_settingsData);
+    }
+
     m_physicsPaddleP1->cancelVelocity();
 
     if (IsKeyDown(KEY_LEFT)) {
@@ -36,13 +40,13 @@ void rce::examples::PongScene::onTick() {
 
     if (IsKeyDown(KEY_A)) {
         m_physicsPaddleP2->setVelocity({
-            (m_settingsData.p1InvertedControls == false ? -1.f : 1.f) * m_settingsData.p2Movement.x,
-            (m_settingsData.p1InvertedControls == false ? -1.f : 1.f) * m_settingsData.p2Movement.y,
+            (m_settingsData.p2InvertedControls == false ? -1.f : 1.f) * m_settingsData.p2Movement.x,
+            (m_settingsData.p2InvertedControls == false ? -1.f : 1.f) * m_settingsData.p2Movement.y,
         });
     } else if (IsKeyDown(KEY_D)) {
         m_physicsPaddleP2->setVelocity({
-            (m_settingsData.p1InvertedControls == false ? 1.f : -1.f) * m_settingsData.p2Movement.x,
-            (m_settingsData.p1InvertedControls == false ? 1.f : -1.f) * m_settingsData.p2Movement.y,
+            (m_settingsData.p2InvertedControls == false ? 1.f : -1.f) * m_settingsData.p2Movement.x,
+            (m_settingsData.p2InvertedControls == false ? 1.f : -1.f) * m_settingsData.p2Movement.y,
         });
     }
 
@@ -153,11 +157,11 @@ void rce::examples::PongScene::onLoad() {
 
 void PongScene::onScoreAdd() const {
     if (m_scoreP1 >= m_settingsData.winScore) {
-        loadScene<WinScene>(1);
+        loadScene<WinScene>(1, m_settingsData);
         return;
     }
     if (m_scoreP2 >= m_settingsData.winScore) {
-        loadScene<WinScene>(2);
+        loadScene<WinScene>(2, m_settingsData);
         return;
     }
 

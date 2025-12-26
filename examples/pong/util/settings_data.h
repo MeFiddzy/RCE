@@ -8,6 +8,6 @@ namespace rce::examples {
         Vector2 p1Size, p2Size;
         Vector2 p1Movement, p2Movement;
         bool p1InvertedControls, p2InvertedControls;
-        uint8_t winScore;
+        int winScore;
     };
 }
