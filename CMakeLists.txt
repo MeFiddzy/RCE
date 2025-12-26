@@ -68,6 +68,13 @@ add_executable(rce
         examples/platformer/components/physics_component.cpp
         examples/platformer/objects/orb_object.cpp
         examples/platformer/objects/orb_object.h
+        examples/pong/pong.cpp
+        examples/pong/scenes/pong_scene.cpp
+        examples/pong/components/mini_physics_component_p.cpp
+        examples/pong/scenes/win_scene.h
+        examples/pong/scenes/play_menu_scene.h
+        examples/pong/util/settings_data.h
+        examples/pong/scenes/settings_scene.h
 )
 
 target_include_directories(rce PRIVATE include)

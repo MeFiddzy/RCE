@@ -1,19 +1,27 @@
 #include <raylib.h>
 #include <memory>
 
-#include "rce/objects/abstract_object.h"
 #include "rce/scenes/scene.h"
-#include "scene/play_scene.h"
+#include "scenes/pong_scene.h"
+#include "scenes/play_menu_scene.h"
 
-int main1() {
+int main() {
     // create window
-    InitWindow(1300, 1200, "Platformer");
+    InitWindow(1300, 1200, "Pong");
     SetTargetFPS(60);
 
     using namespace rce;
 
     // load scene
-    IScene::loadScene<examples::PlayScene>();
+    IScene::loadScene<examples::PlayMenuScene>(examples::SettingsData{
+        {150, 20},
+        {150, 20},
+        {7, 0},
+        {7, 0},
+        false,
+        false,
+        10
+    });
 
     /// game loop
     while (!WindowShouldClose()) {
@@ -29,7 +37,7 @@ int main1() {
         AbstractObject::update();
 
         for (const auto &weakSystem : scene->getSystems()) {
-                if (!weakSystem.expired()) {
+            if (!weakSystem.expired()) {
                 auto system = weakSystem.lock();
                 if (system->isEnabled())
                     system->onSceneTick(scene);
