@@ -109,6 +109,11 @@ namespace rce {
         }
 
     protected:
+        template<typename Object>
+        std::shared_ptr<Object> addObject(std::shared_ptr<Object> obj) {
+            return std::dynamic_pointer_cast<Object>(m_objects.emplace_back(obj));
+        }
+
         std::vector<std::shared_ptr<AbstractObject>> m_objects;
 
         static std::shared_ptr<IScene> s_loadedScene;

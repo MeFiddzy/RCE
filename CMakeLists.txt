@@ -75,6 +75,9 @@ add_executable(rce
         examples/pong/scenes/play_menu_scene.h
         examples/pong/util/settings_data.h
         examples/pong/scenes/settings_scene.h
+        include/rce/objects/interactive/text_boxs/text_box.h
+        include/rce/objects/interactive/text_boxs/text_box.cpp
+        include/rce/objects/interactive/text_boxs/rectangle_textbox.h
 )
 
 target_include_directories(rce PRIVATE include)
