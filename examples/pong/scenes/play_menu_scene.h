@@ -14,6 +14,14 @@ namespace rce::examples {
 
             addSystem(std::make_shared<InteractiveObjectsSystem>());
 
+            addObject(std::make_shared<TextObject>(TextObject{
+                "Pong",
+                300,
+                10,
+                {330, 350},
+                WHITE,
+            }));
+
             m_objects.emplace_back(std::make_shared<RectangleButton>(RectangleButton{
                 {350, 900},
                 {0, 0},
