@@ -1,0 +1,10 @@
+^D:\INFO\RAYLIB\RCE\CMAKE-BUILD-DEBUG\_DEPS\RAYLIB-SUBBUILD\CMAKEFILES\234CCB9194253409686B5020C3C66BA3\GENERATE.STAMP.RULE
+setlocal
+"D:\Apps\JetBrains\CLion\CLion 2025.1.3\bin\cmake\win\x64\bin\cmake.exe" -SD:/Info/raylib/RCE/cmake-build-debug/_deps/raylib-subbuild -BD:/Info/raylib/RCE/cmake-build-debug/_deps/raylib-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Info/raylib/RCE/cmake-build-debug/_deps/raylib-subbuild/raylib-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

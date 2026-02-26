@@ -5,7 +5,7 @@
 #include "scenes/pong_scene.h"
 #include "scenes/play_menu_scene.h"
 
-int main() {
+int pong() {
     // create window
     InitWindow(1300, 1200, "Pong");
     SetTargetFPS(60);

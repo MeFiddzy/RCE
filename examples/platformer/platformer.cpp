@@ -5,7 +5,7 @@
 #include "rce/scenes/scene.h"
 #include "scene/play_scene.h"
 
-int main1() {
+int platformer() {
     // create window
     InitWindow(1300, 1200, "Platformer");
     SetTargetFPS(60);

@@ -4,7 +4,7 @@
 #include "rce/scenes/scene.h"
 #include "scenes/start_menu_scene.h"
 
-int main2() {
+int breakoid() {
     // create window
     InitWindow(1300, 1200, "Break The Blocks");
     SetTargetFPS(60);

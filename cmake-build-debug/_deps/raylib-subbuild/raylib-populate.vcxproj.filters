@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\6f82351c516ad919143d0a83ec511768\raylib-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\7e1da0a3b3f524ba1fdcce5e28f57efa\raylib-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\234ccb9194253409686b5020c3c66ba3\raylib-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Info\raylib\RCE\cmake-build-debug\_deps\raylib-subbuild\CMakeFiles\raylib-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5E0D1675-942E-360B-B2BE-9D924942C2C8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
