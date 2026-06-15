@@ -6,7 +6,7 @@ RCE is a small **component-based game framework** built on top of the awesome ga
 
 It is written in **C++** and uses **CMake** as its build system.
 
-I started building this engine after making a small game in Unity. I missed **pointers**, disliked the API design, and wanted something closer to the C++ / OOP style I enjoy working with. The result is RCE — a (probably bug-filled) framework focused on:
+I started building this engine after making a small game in Unity. I missed **pointers**, disliked the API design, and wanted something closer to the C++ / OOP style I enjoy working with. The result is RCE - a (probably bug-filled) framework focused on:
 
 * Explicit ownership and lifetimes
 * Simple and extendable **OOP-based architecture**
